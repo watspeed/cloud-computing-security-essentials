@@ -961,3 +961,5 @@ Here is a [cheat sheet](../Linux_cheat_sheet.pdf) of common Linux commands.
 
 
 ### You successfully completed the Lab
+
+To confirm your completion, go to the `<Lab Validation>` tab in the navigation bar at the top of this guide and click the '<Validate>` button.
