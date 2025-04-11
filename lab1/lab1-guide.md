@@ -6,11 +6,13 @@ In this lab, we are going to overview basic Linux commands for extracting inform
 
 All the commands will be run using the command line interface (CLI). The CLI is a powerful tool for running applications, inspecting the system status, and configuring a machine.
 
+To pass this lab, you must run all of the provided Linux commands in the CLI.
+
 ## Lab instructions
 
 ### Starting a shell program
 
-1. Open a terminal application. Double click on the terminal application on the desktop.
+1. Open a terminal application. Click on the terminal application on the desktop.
 
 ![](../images/lab1_fig1.png)
 
@@ -19,8 +21,6 @@ All the commands will be run using the command line interface (CLI). The CLI is 
 ![](../images/lab1_fig2.png)
 
 To run a command, type a command in the shell and press `<Enter>`. For instance, type `date` in the shell and press `<Enter>`. This runs the date command and displays the date and time of the machine.
-
-<!-- ### Run the `date` command -->
 
 ```bash
 date
@@ -797,20 +797,6 @@ ls
 Desktop    Downloads  Pictures  Templates  thinclient_drives
 Documents  Music      Public    Videos
 ```
-
-#### 4.3 Changing a directory
-To change a directory, use the `cd` command followed by the directory name.
-
-```bash
-cd <directory_name>
-```
-
-The `cd ~` command returns the prompt to the home directory of the user.
-
-```bash
-cd ~
-```
-
 #### 4.4 Creating a directory
 To create a directory, use the `mkdir` command.
 
@@ -831,7 +817,8 @@ Desktop    Downloads  Pictures  Templates  newDir
 Documents  Music      Public    Videos     thinclient_drives
 ```
 
-`cd` will change the working directory to `newDir`. `pwd` should confirm that.
+#### 4.3 Changing a directory
+To change a directory, use the `cd` command followed by the directory name. `cd` will change the working directory to `newDir`. `pwd` should confirm that.
 
 ```bash
 cd newDir
@@ -839,6 +826,12 @@ cd newDir
 
 ```bash
 pwd
+```
+
+The `cd ~` command returns the prompt to the home directory of the user.
+
+```bash
+cd ~
 ```
 
 **Output** 
@@ -862,8 +855,8 @@ The `nano` command opens the file for editing.
 ![](../images/lab1_fig3.PNG)
 
 At the bottom of the nano window are the available nano commands. ^ means ctrl.
-So you can write in the file something like “this is a test”
-Then press `<ctrl+x>` to exit
+So you can write in the file something like “this is a test”.
+Then press `<ctrl+x>` to exit.
 When asked, press `<y>` to save the changes.
 Press `<enter>` to confirm the file name.
 
@@ -930,7 +923,7 @@ To delete a file use the `rm` command
 rm new_file.txt
 ```
 
-Deletes the new_file.txt
+Deletes the `new_file.txt`
 
 Use `ls` to verify that the file is deleted.
 
