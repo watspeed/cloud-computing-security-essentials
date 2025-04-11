@@ -383,7 +383,7 @@ The output of this command shows that this machine has an intel Intel(R) Xeon(R)
 To find information about the memory system in a machine and stats about its usage you can read the `/proc/meminfo` file
 
 ```bash
-less  /proc/meminfo
+less /proc/meminfo
 ```
 The `less` command prints the file `/proc/meminfo` one page at a time.
 The file `/proc/meminfo` contains information about the memory configuration and its usage.
