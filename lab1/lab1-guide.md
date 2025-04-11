@@ -828,11 +828,6 @@ cd newDir
 pwd
 ```
 
-The `cd ~` command returns the prompt to the home directory of the user.
-
-```bash
-cd ~
-```
 
 **Output** 
 
@@ -841,6 +836,11 @@ cd ~
 ```
 
 
+The `cd ~` command returns the prompt to the home directory of the user.
+
+```bash
+cd ~
+```
 
 #### 4.5 Creating and reading a file
 There are many commands for creating and editing a text file from within the terminal. The easiest one to learn is `nano`.
