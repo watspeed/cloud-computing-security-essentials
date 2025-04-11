@@ -6,7 +6,7 @@ In this lab, we are going to overview basic Linux commands for extracting inform
 
 All the commands will be run using the command line interface (CLI). The CLI is a powerful tool for running applications, inspecting the system status, and configuring a machine.
 
-## Lab Instrcutions
+## Lab instructions
 
 ### Starting a shell program
 
@@ -18,7 +18,7 @@ All the commands will be run using the command line interface (CLI). The CLI is 
 
 ![](../images/lab1_fig2.png)
 
-To run a command, type a command in the shell and press <Enter>. For instance, type `date` in the shell and press <Enter>. This runs the date command and displays the date and time of the machine.
+To run a command, type a command in the shell and press `<Enter>`. For instance, type `date` in the shell and press `<Enter>`. This runs the date command and displays the date and time of the machine.
 
 <!-- ### Run the `date` command -->
 
@@ -261,35 +261,6 @@ This prints the manual for the date command. The manual usually does not fit on 
 
 ### 2. Running commands as a superuser
 
-<!---
-#### 2.1 Using `su`  
-`su` is a command to substitute user. It changes the user ID. If used without giving a user ID, the command changes to a superuser. After typing su and pressing Enter, the terminal asks for a password. Enter the superuser password. The prompt changes to end with # which indicates that it is running in superuser mode.
-
-```bash
-su
-```
-
-**Output** 
-
-```plaintext
-root@labvm-1378410:/home/seed#
-```
-
-When you are done using the superuser mode, you can type `exit` to exit the superuser and return to your user mode.
-
-```bash
-exit
-```
-
-**Output** 
-```plaintext
-exit
-seed@labvm-1378410:~$
-```
-
-#### 2.2 Using `sudo`
---->
-
 To run commands as a superuser, you need to use `sudo`. The `sudo` command allows you to execute a single command with superuser (root) privileges. This is useful for performing administrative tasks that require higher permissions than those of a regular user.
 
 For instance, the following command runs `ls` (which lists directory contents) with superuser mode:
@@ -306,12 +277,12 @@ Documents  Music      Public	Videos
 ```
 
 > [!CAUTION]
-> Using <sudo> runs commands in superuser mode which allows the command that is executed in this mode to change critical configurations and files in the operating system.
-> Consequantly, best practice for using superuser mode is:
-> + Limit the use of the superuser mode to the bare minimum commands that need superuser priviligaes
-> + Only run commands that you trust and know what they do exactly
+> Using `sudo` runs commands in superuser mode, which allows the command that is executed to change critical configurations and files in the operating system.
+> Consequently, best practice for using superuser mode is:
+> + Limit the use of the superuser mode to the bare minimum commands that need superuser privileges
+> + Only run commands that you trust and fully understand
 
-### 3. Extracting Machine Information
+### 3. Extracting machine information
 
 Several common Linux commands help us extract information about the machine.
 
@@ -409,13 +380,13 @@ Flags:                              fpu vme de pse tsc msr pae mce cx8 apic sep
 The output of this command shows that this machine has an intel Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
 
 #### 3.3 Finding the memory information
-To find information about the memory system in a machine and stats about its usage you can read the /proc/meminfo
+To find information about the memory system in a machine and stats about its usage you can read the `/proc/meminfo` file
 
 ```bash
 less  /proc/meminfo
 ```
 The `less` command prints the file `/proc/meminfo` one page at a time.
-The file `/proc/meminfo` contains information about the memory confiugration and its usage.
+The file `/proc/meminfo` contains information about the memory configuration and its usage.
 
 **Output**
 
@@ -474,13 +445,11 @@ DirectMap1G:     3145728 kB
 ~
 ```
 
-**Output**
-
 The output shows that this machine has close to 4 GB of memory. Around 2.6 GB is free.
 
-#### 3.4 Processes Management 
+#### 3.4 Processes management 
 
-To find information about the processes running on an operating system, you can use `ps` or `top.`
+To find information about the processes running on an operating system, you can use `ps` or `top`.
 `ps` is the command to check the process status. The command offers a number of options to display details about processes.
 
 ```bash
@@ -495,7 +464,7 @@ ps
 ```
 
 The output shows the processes that are run by the current user.
-The `ps -e -f` command is a variation of the ps command in Linux that allows you to display a list of all the processes running on your Linux system in a more detailed format. It provides a full-process listing that includes information such as the process owner, parent process ID, and start time.
+The `ps -e -f` command is a variation of the `ps` command in Linux that allows you to display a list of all the processes running on your Linux system in a more detailed format. It provides a full-process listing that includes information such as the process owner, parent process ID, and start time.
 
 ```bash
 ps -e -f
@@ -697,7 +666,7 @@ seed        1991    1986  0 23:32 pts/0    00:00:00 bash
 seed        1999    1991  0 23:32 pts/0    00:00:00 ps -e -f
 ```
 
-A second common command for monitoring processes on a machine is `top.`
+A second common command for monitoring processes on a machine is `top`.
 It provides a dynamic real-time view of the running system. Usually, this command shows the system's summary information and the list of processes running. As soon as you run this command, it will open an interactive command mode. The top half portion contains the statistics of processes and resource usage, and the lower half contains a list of the currently running processes. Pressing `q` will simply exit the command mode.
 
 ```bash
@@ -803,7 +772,7 @@ The command shows that this machine has the ip address of 10.0.0.4
 
 The Linux files and directories are organized in a directory tree. Each directory can contain files or other directories.
 
-#### Finding the current working directory
+#### 4.1 Finding the current working directory
 To find the current working directory, use the `pwd` command.
 
 ```bash
@@ -816,14 +785,12 @@ pwd
 /home/seed
 ```
 
-#### Listing directories and files
+#### 4.2 Listing directories and files
 The `ls` command lists all directories and files in the current directory.
 
 ```bash
 ls
 ```
-
-This is an example of the list of all directories in the home directory:
 
 **Output** 
 ```plaintext
@@ -831,7 +798,7 @@ Desktop    Downloads  Pictures  Templates  thinclient_drives
 Documents  Music      Public    Videos
 ```
 
-#### Changing a directory
+#### 4.3 Changing a directory
 To change a directory, use the `cd` command followed by the directory name.
 
 ```bash
@@ -844,14 +811,14 @@ The `cd ~` command returns the prompt to the home directory of the user.
 cd ~
 ```
 
-#### 4.1 Creating a directory
+#### 4.4 Creating a directory
 To create a directory, use the `mkdir` command.
 
 ```bash
 mkdir newDir
 ```
 
-You can notice that "newDir" was created by running the <ls> command
+You can confirm that "newDir" was created by running the `ls` command
 
 ```bash
 ls
@@ -864,7 +831,7 @@ Desktop    Downloads  Pictures  Templates  newDir
 Documents  Music      Public    Videos     thinclient_drives
 ```
 
-This command creates a new directory named `newDir`. You can change to the <newDir>
+`cd` will change the working directory to `newDir`. `pwd` should confirm that.
 
 ```bash
 cd newDir
@@ -880,25 +847,25 @@ pwd
 /home/seed/newDir
 ```
 
-`cd` will change the working directory to `newDir`. `pwd` should confirm that.
 
-#### 4.2 Creating and reading a file
+
+#### 4.5 Creating and reading a file
 There are many commands for creating and editing a text file from within the terminal. The easiest one to learn is `nano`.
 
 ```bash
 nano new_file.txt
 ```
 
-This command will create a new_file.txt if it does not exist, and will open it for editing if it already exists.
+This command will create a `new_file.txt` if it does not exist, and will open it for editing if it already exists.
 The `nano` command opens the file for editing.
 
 ![](../images/lab1_fig3.PNG)
 
 At the bottom of the nano window are the available nano commands. ^ means ctrl.
 So you can write in the file something like “this is a test”
-Then press <ctrl+x> to exit
-When asked, press <y> to save the changes.
-Press <enter> to confirm the file name.
+Then press `<ctrl+x>` to exit
+When asked, press `<y>` to save the changes.
+Press `<enter>` to confirm the file name.
 
 Use `ls` to confirm that the new file is created.
 
@@ -933,10 +900,10 @@ less new_file.txt
 **Output** 
 
 ```plaintext
-This is the content of new_file.txt
+this is a test
 ```
 
-#### 4.3	Managing files
+#### 4.6 Managing files
 
 Use `cp` to copy a file.
 
@@ -944,7 +911,7 @@ Use `cp` to copy a file.
 cp new_file.txt copy_file.txt
 ls
 ```
-This command copies the file <new_file.txt> to a new file <copy_file.txt>
+This command copies the file `new_file.txt` to a new file `copy_file.txt`
 Use `ls` to verify that the file is copied.
 
 
@@ -955,7 +922,7 @@ Desktop    Downloads  Pictures  Templates  copy_file.txt  new_file.txt
 Documents  Music      Public    Videos     newDir         thinclient_drives
 ```
 
-You can see that you have two files now: new_file.txt and copy_file.txt
+You can see that you have two files now: `new_file.txt` and `copy_file.txt`
 
 To delete a file use the `rm` command
 
@@ -974,7 +941,7 @@ Desktop    Downloads  Pictures  Templates  copy_file.txt  thinclient_drives
 Documents  Music      Public    Videos     newDir
 ```
 
-#### 4.4	Save the Command History to a File
+#### 4.7	Save the Command History to a File
 You can save the command history to a file by running the following command:
 
 ```bash
@@ -982,18 +949,18 @@ history > ~/my_history.txt
 ```
 
 
-#### 4.5	Terminate the Shell Session
-Run the following command to exit the shell session
-
-```bash
-exit
-```
-
-#### 4.6	Verify the History File
+#### 4.8	Verify the History File
 Check the history file you created using the following command to view the history file
 
 ```bash
 cat ~/my_history.txt
+```
+
+#### 4.9	Terminate the Shell Session
+Run the following command to exit the shell session
+
+```bash
+exit
 ```
 
 #### Additional Resources
