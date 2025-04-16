@@ -20,11 +20,11 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
 
 1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Virtual machines (1)**, and then select **Virtual machines (2)** under services.
 
-   ![](images/lab1-image1.png) 
+   ![](../images/lab1-image1.png) 
 
 1. On the **Virtual machines** blade, click **+ Create (1)** and choose **Azure virtual machine (2)**.
 
-    ![](images/lab1-image2.png) 
+    ![](../images/lab1-image2.png) 
 
 1. On the **Basics** tab, fill in the following information (leave the defaults for everything else):
 
@@ -43,30 +43,30 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
     | Select inbound ports | **SSH (22)** and **HTTP (80)** and **HTTPS** (443) (10)|
     |||
    
-    ![](images/l1vm-u.png)
+    ![](../images/l1vm-u.png)
    
-    ![](images/VM2-u.png)
+    ![](../images/VM2-u.png)
 
     Here, you choose the size:
 
-    ![](images/lab2_fig5-u.PNG)
+    ![](../images/lab2_fig5-u.PNG)
 
     After expanding the list to view all sizes, you will see the following options:
    
-    ![](images/lab2_fig6.PNG)
+    ![](../images/lab2_fig6.PNG)
 
     Furthermore, you can choose the VM architecture:
 
-    ![](images/lab2_fig8.png)
+    ![](../images/lab2_fig8.png)
 
     Additionally, you can select a region from this list:
 
-    ![](images/lab2_fig7.png)
+    ![](../images/lab2_fig7.png)
 
 
 1. Click **Next** to switch to the **Disks** tab and in the **OS Disk type** select **Standard HDD** from the dropdown and leave everything else as default and click **Next**. 
 
-   ![Screenshot of the virtual machine properties with the Connect button highlighted.](images/hdd-u.png)
+   ![Screenshot of the virtual machine properties with the Connect button highlighted.](../images/hdd-u.png)
 
 1. Within the Networking tab, look for the **Select inbound ports**:
 
@@ -98,30 +98,30 @@ In this task, we will connect to our new virtual machine using RDP.
 
 1. Once the deployment is complete, click on **Go to resource** you will be directed to the page of the newly created Virtual Machine.
 
-    ![Screenshot of the virtual machine properties with the Connect button highlighted.](images/goto.png)
+    ![Screenshot of the virtual machine properties with the Connect button highlighted.](../images/goto.png)
    
 1. On the virtual machine **Overview** blade, click the **Connect** button and choose the **Connect** from the dropdown.
 
-    ![Screenshot of the virtual machine properties with the Connect button highlighted.](images/conrdp.png)
+    ![Screenshot of the virtual machine properties with the Connect button highlighted.](../images/conrdp.png)
 
     >**Note:**: The following directions tell you how to connect to your VM from a Windows computer.
 
 1. Within the **Connect** page, click on **Select** under **Native SSH**.
 
-   ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSH-U.png)
+   ![Screenshot of the virtual machine properties with the Connect button highlighted. ](../images/SSH-U.png)
 
 1. Check the terms and conditions and click on **Configure**, Copy the SSH command
 
-    ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSH-U1.png)
+    ![Screenshot of the virtual machine properties with the Connect button highlighted. ](../images/SSH-U1.png)
 
 1. Next, open a command prompt terminal application and paste the copied SSH command from previous step.
 
-     ![](images/lab2-cmd-prompt-1-u.png)
+     ![](../images/lab2-cmd-prompt-1-u.png)
    
  
 1. Provide the password(Pa$$w0rd1234) when prompted and click Enter.
 
-    ![](images/lab2-cmd-prompt-2.png)
+    ![](../images/lab2-cmd-prompt-2.png)
 
     <!--- ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSHlogin.png) --->
 
@@ -135,7 +135,7 @@ In this task, install the Apache Web Server and access it.
    ```   
 1. Open a new browser tab, paste the public IP address into the URL text box, and press the Enter key to browse to it. The custom created basic website shows up.
 
-    ![](images/apache.png)
+    ![](../images/apache.png)
 
    
     >**Congratulations** on completing the task!
@@ -143,26 +143,26 @@ In this task, install the Apache Web Server and access it.
 #### Overview of the Virtual Machine 
 In this section, you will get an overview of the Virtual Machine (VM). Below, you can see the "Essential" section, which repeats the configuration details of your VM.
 
-![](images/lab2_fig1.PNG) 
+![](../images/lab2_fig1.PNG) 
 
 Additionally, you can use these buttons to manage your VM, including options to Stop, Restart, Capture, and Delete the machine.
 
-![](images/lab2_fig4.png) 
+![](../images/lab2_fig4.png) 
 
 Moreover, by scrolling down, you can explore several tabs that provide detailed information and controls for your virtual machine (VM).
 
 - Properties: Displays the properties of the machine.
 
-![](images/lab2_fig2.png) 
+![](../images/lab2_fig2.png) 
 
 - Monitoring: Offers comprehensive information, including performance metrics and availability, for example CPU usage, which displays the current CPU usage of the virtual machine (VM); and disk usage, which shows the current disk usage of the VM.
 
-![](images/lab2_fig3.png) 
+![](../images/lab2_fig3.png) 
 
 #### Setup A Cost Alert
 Manage how mony you spent, fill write a name for a budghet (like $500), 
 
- ![](images/lab2_fig9.png)
+ ![](../images/lab2_fig9.png)
 
 - In real deployments you would click “submit” to enable the cost alert. This feature is not enabled for this lab.
     
@@ -180,3 +180,5 @@ In this lab, you have completed:
 - https://learn.microsoft.com/en-us/partner-center/marketplace/azure-vm-use-approved-base
 
 ## You have successfully completed this lab.
+
+To confirm your completion and receive credit for this lab, go to the `<Lab Validation>` tab in the navigation bar at the top of this guide and click the `<Validate>` button.
