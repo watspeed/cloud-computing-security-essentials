@@ -2,7 +2,7 @@
 
 An Azure Virtual Machine (VM) is a computing resource provided by Microsoft Azure. It allows users to create and use virtualized computing instances in the cloud. Azure Virtual Machines enable users to run applications, host websites, and perform various computing tasks without needing to purchase and maintain physical hardware.
 
-In this walkthrough, we will create a Linux virtual machine in the Azure portal, connect to the virtual machine, install the Apache web server and test.
+In this walkthrough, we will create a Linux virtual machine in the Azure portal, connect to the virtual machine, install the Apache web server, and test.
 
 ## Lab objectives
 
@@ -12,13 +12,13 @@ In this lab, you will complete the following tasks:
 + Task 2: Connect to the virtual machine
 + Task 3: Install Apache server and access
 
-## Estimated timing: 30 minutes
+Estimated timing: 30 minutes
 
-### Task 1: Create the virtual machine
+## Task 1: Create the virtual machine
 
 In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine. 
 
-1. On Azure Portal page, in Search resources, services and docs (G+/) box at the top of the portal, enter **Virtual machines (1)**, and then select **Virtual machines (2)** under services.
+1. On the Azure Portal page, in the Search resources, services, and docs (G+/) box at the top of the portal, enter **Virtual machines (1)**, and then select **Virtual machines (2)** under services.
 
    ![](../images/lab1-image1.png) 
 
@@ -34,7 +34,7 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
     | Resource group | **myRGVM-<inject key="DeploymentID" enableCopy="false"/>** (2) |
     | Virtual machine name | **myVm** (3)|
     | Location | **(US) East US** (4)|
-    | Image | **Ubuntu Server 20.04 LTS** (5)|
+    | Image | **Ubuntu Server 20.04 LTS - x64 Gen2** (5)|
     | Size | **Standard_D2s_v3** (6)|
     | Authentication type| **Password** |
     | Administrator account username | **azureuser** (7)|
@@ -42,29 +42,15 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
     | Inbound port rules  | **Allow select ports** (9)|
     | Select inbound ports | **SSH (22)** and **HTTP (80)** and **HTTPS** (443) (10)|
     |||
-   
+
+    Note that some of the options may require you to select the **See all** button, located below the dropdown selector, to find the particular option that you need.
+
     ![](../images/l1vm-u.png)
    
     ![](../images/VM2-u.png)
 
-    Here, you choose the size:
 
-    ![](../images/lab2_fig5-u.PNG)
-
-    After expanding the list to view all sizes, you will see the following options:
-   
-    ![](../images/lab2_fig6.PNG)
-
-    Furthermore, you can choose the VM architecture:
-
-    ![](../images/lab2_fig8.png)
-
-    Additionally, you can select a region from this list:
-
-    ![](../images/lab2_fig7.png)
-
-
-1. Click **Next** to switch to the **Disks** tab and in the **OS Disk type** select **Standard HDD** from the dropdown and leave everything else as default and click **Next**. 
+1. Click **Next : Disks** to switch to the **Disks** tab and in the **OS Disk type** select **Standard HDD** from the dropdown and leave everything else as default and click **Next : Networking**. 
 
    ![Screenshot of the virtual machine properties with the Connect button highlighted.](../images/hdd-u.png)
 
@@ -76,15 +62,15 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
    
     >**Note:** - Verify that ports 80, 443 and 22 are selected
 
-1. Click **Next** to switch to the **Management** tab and leave everything as default.
+1. Click **Next : Management** to switch to the **Management** tab and leave everything as default.
 
-1. Click **Next** to switch to the **Monitoring** tab, select the following setting:
+1. Click **Next : Monitoring** to switch to the **Monitoring** tab, select the following setting:
 
     | Settings | Values |
     | -- | -- |
     | Boot diagnostics | **Disable**|
   
-1. Leave the remaining defaults and then click the **Review + Create** button at the bottom of the page.
+1. Leave the remaining defaults and then click the **Review + create** button at the bottom of the page.
 
 1. Once Validation is passed click the **Create** button. It can take anywhere from five to seven minutes to deploy the virtual machine.
 
@@ -92,7 +78,7 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
 
    >**Note**: Here is the reference link for virtual machine https://azure.microsoft.com/en-in/resources/cloud-computing-dictionary/what-is-a-virtual-machine/
 
-### Task 2: Connect to the virtual machine
+## Task 2: Connect to the virtual machine
 
 In this task, we will connect to our new virtual machine using RDP. 
 
@@ -110,7 +96,7 @@ In this task, we will connect to our new virtual machine using RDP.
 
    ![Screenshot of the virtual machine properties with the Connect button highlighted. ](../images/SSH-U.png)
 
-1. Check the terms and conditions and click on **Configure**, Copy the SSH command
+1. Check the terms and conditions and click on **Configure**. Then, copy the SSH command.
 
     ![Screenshot of the virtual machine properties with the Connect button highlighted. ](../images/SSH-U1.png)
 
@@ -119,13 +105,16 @@ In this task, we will connect to our new virtual machine using RDP.
      ![](../images/lab2-cmd-prompt-1-u.png)
    
  
-1. Provide the password(Pa$$w0rd1234) when prompted and click Enter.
+1. Enter yes when asked if you want to continue connecting, then provide the password(Pa$$w0rd1234) when prompted and click Enter.
 
     ![](../images/lab2-cmd-prompt-2.png)
 
-    <!--- ![Screenshot of the virtual machine properties with the Connect button highlighted. ](images/SSHlogin.png) --->
+1. To ensure that all available updates are applied, run the command
+   ```
+   sudo apt update
+   ``` 
 
-### Task 3:  Install Apache server and access on your New Azure Cloud VM
+## Task 3:  Install Apache server and access on your new Azure Cloud VM
 
 In this task, install the Apache Web Server and access it.
 
@@ -133,14 +122,15 @@ In this task, install the Apache Web Server and access it.
    ```
    sudo apt install apache2
    ```   
-1. Open a new browser tab, paste the public IP address into the URL text box, and press the Enter key to browse to it. The custom created basic website shows up.
+1. Return to your browser and copy the public IP address from the Native SSH tab. Then, open a new browser tab, paste the public IP address into the URL text box, and press the Enter key to browse to it. The custom created basic website shows up.
 
-    ![](../images/apache.png)
+   ![](../images/public-ip.png)
+   ![](../images/apache.png)
 
    
     >**Congratulations** on completing the task!
     
-#### Overview of the Virtual Machine 
+### Overview of the Virtual Machine 
 In this section, you will get an overview of the Virtual Machine (VM). Below, you can see the "Essential" section, which repeats the configuration details of your VM.
 
 ![](../images/lab2_fig1.PNG) 
@@ -158,20 +148,13 @@ Moreover, by scrolling down, you can explore several tabs that provide detailed 
 - Monitoring: Offers comprehensive information, including performance metrics and availability, for example CPU usage, which displays the current CPU usage of the virtual machine (VM); and disk usage, which shows the current disk usage of the VM.
 
 ![](../images/lab2_fig3.png) 
-
-#### Setup A Cost Alert
-Manage how mony you spent, fill write a name for a budghet (like $500), 
-
- ![](../images/lab2_fig9.png)
-
-- In real deployments you would click “submit” to enable the cost alert. This feature is not enabled for this lab.
     
-### Review
+## Review
 
 In this lab, you have completed:
 - Create the virtual machine
 - Connect to the virtual machine
--  Install Apache server and access
+- Install Apache server and access
 
 ## Reference links
 
@@ -181,4 +164,4 @@ In this lab, you have completed:
 
 ## You have successfully completed this lab.
 
-To confirm your completion and receive credit for this lab, go to the `<Lab Validation>` tab in the navigation bar at the top of this guide and click the `<Validate>` button.
+To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task.
