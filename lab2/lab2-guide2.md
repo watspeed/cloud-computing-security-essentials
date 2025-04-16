@@ -43,8 +43,8 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
     | Select inbound ports | **SSH (22)** and **HTTP (80)** and **HTTPS** (443) (10)|
     |||
 
-    Note that some of the options may require you to select the **See all** button, located below the dropdown selector, to find the particular option that you need.
-   >**Important** You must name your virtual machine **myVm** for your lab to validate successfully. 
+    >Note that some of the options may require you to select the **See all** button, located below the dropdown selector, to find the particular option that you need.
+   **Important:** You must name your virtual machine **myVm** for your lab to validate successfully. 
 
     ![](../images/l1vm-u.png)
    
