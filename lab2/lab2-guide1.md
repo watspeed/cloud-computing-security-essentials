@@ -64,6 +64,6 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
 
 Clicking **Next** from the bottom right corner of this lab guide will take you to the next page of the guide, where you'll complete your lab tasks!
  
-    ![Start Your Azure Journey](../images/sc900-image(3).png)
+   ![Start Your Azure Journey](../images/sc900-image(3).png)
 
 As you work through the lab guide, please review the **Note** sections for enhanced comprehension and improved lab performance.
