@@ -82,7 +82,7 @@ In this task, you will create and configure an Azure Storage account.
     + Change the **public access level** to **Enabled from all network**.
     + Be sure to **Save** your changes. 
 
-1. In the **Data management** section, view the **Redundancy** blade. Notice the information about your primary data center locations.
+1. In the **Data management** section, view the **Redundancy** blade. Notice the information about your primary data center locations. Then click **Next**.
 
 1. In the **Data management** section, select **Lifecycle management**, and then select **Add a rule**.
 
@@ -90,7 +90,7 @@ In this task, you will create and configure an Azure Storage account.
   
       ![image](../images/lab4-17.png)
     
-    + On the **Base blobs** tab, *if* based blobs were last modified more than `30 days` ago *then* **move to cool storage**. Notice your other choices. Notice you can configure other conditions. Select **Add** when you are done exploring.
+    + On the **Base blobs** tab, create the following rule: *if* based blobs were *last modified* more than *30 days* ago *then* **move to cool storage**. Notice your other choices. Notice you can configure other conditions. Select **Add** when you are done exploring.
 
       ![image](../images/lab4-18.png)
       
