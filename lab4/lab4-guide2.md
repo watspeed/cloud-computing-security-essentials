@@ -23,22 +23,20 @@ In this lab, you will complete the following tasks:
 + Task 3: Create and configure secure Azure file storage.
 
   
-## Estimated timing: 45 minutes
+Estimated timing: 45 minutes
 
 ## Architecture diagram
 
   ![Diagram of the tasks.](../images/lab4-13.png)
 
-## Exercise 1
-
-### Task 1: Create and configure Azure Storage accounts
+## Task 1: Create and configure Azure Storage accounts
 In this task, you will create and configure an Azure Storage account.
 
-1. On Azure Portal page, in **Search resources, services and docs (G+/)** box at the top of the portal, enter **Storage accounts**, and then select **Storage accounts** under services.
+1. On the Azure Portal page, in the **Search resources, services and docs (G+/)** box at the top of the portal, enter **Storage accounts**, and then select **Storage accounts** under services.
 
     ![image](../images/lab4-14.png)
 
-1. On **Storage accounts** blade, click **+ Create**.
+1. On the **Storage accounts** blade, click **+ Create**.
    
 1. On the **Basics** tab of the **Create storage account** blade, specify the following settings (leave others with their default values):
 
@@ -51,9 +49,9 @@ In this task, you will create and configure an Azure Storage account.
     | Performance | **Standard** |
     | Redundancy | **Geo-redundant storage (GRS)** |
 
-1. Click **Next: Advanced >**, on the **Advanced** tab of the **Create a storage account** blade, review the available options, accept the defaults, and click **Next: Networking >**.
+1. Click **Next**, and on the **Advanced** tab of the **Create a storage account** blade, review the available options, accept the defaults, and click **Next**.
 
-1. On the **Networking** tab of the **Create a storage account** blade, review the available options and select Disable public access and use private access under network access. Click **Next: Data protection >**.
+1. On the **Networking** tab of the **Create a storage account** blade, review the available options and select **Disable public access and use private access** under network access. Click **Next**.
 
 1. On the **Data protection** tab of the **Create a storage account** blade, review the available options and accept the defaults. Click **Review + Create** and wait for the validation process to complete. Then click on **Create**.
 
@@ -61,7 +59,9 @@ In this task, you will create and configure an Azure Storage account.
 
 1. On the deployment blade, click **Go to resource** to display the Azure Storage account blade.
 
-1. On the Storage account blade, in the **Data management** section, click **Redundancy** and note the secondary location. 
+1. On the Storage account blade, in the **Data management (1)** section, click **Redundancy (2)** and note the secondary location.
+
+   ![image](../images/lab4-dm.png)
 
 1. In the same blade **Redundancy** drop-down list select **Locally redundant storage (LRS)** and save the change. 
 
@@ -100,7 +100,7 @@ In this task, you will create and configure an Azure Storage account.
    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
-### Task 2: Create and configure secure blob storage
+## Task 2: Create and configure secure blob storage
 
 In this task, you will create a blob container and upload a blob into it.
 
@@ -131,7 +131,7 @@ In this task, you will create a blob container and upload a blob into it.
    
      ![image](../images/lab4-20.png)
 
-## Manage blob uploads
+### Manage blob uploads
 
 1. In the list of containers, select **az104-07-container** and click **Upload** within the **Upload blob** pane, click on **Browse for files**.
 
@@ -207,7 +207,7 @@ In this task, you will create a blob container and upload a blob into it.
    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
    > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
-### Task 3: Create and configure an Azure File storage
+## Task 3: Create and configure an Azure File storage
 In this task, you will create and configure Azure Files shares.
 
 1. In the Azure portal, navigate back to the blade of the storage account you created in the task 2 of this lab and, in the **Data storage** section, click **File shares**.
@@ -306,3 +306,5 @@ In this lab, you have completed:
 
 
 ### You have successfully completed the lab
+
+To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task.
