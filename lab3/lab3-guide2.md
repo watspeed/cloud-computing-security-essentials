@@ -8,7 +8,7 @@ In this walkthrough, we create, configure, and deploy a Docker container by usin
 
 In this lab, you will complete the following tasks:
 
-+ Task 1: Create Azure Container Instances (ACI) and Deploying a Web Server on it.
++ Task 1: Create Azure Container Instances (ACI) and deploy a web server on it
 + Task 2: Verify deployment of the container instance
 
 Estimated timing: 15 minutes
@@ -17,19 +17,18 @@ Estimated timing: 15 minutes
 
 ![](../images/az900lab03.PNG) 
 
-## Task 1: Create Azure Container Instances (ACI) and Deploying a Web Server (Nginx) on it.
+## Task 1: Create Azure Container Instances (ACI) and deploy a web server (Nginx) on it
 
-In this task, we will create a new container instance and deploying a web server (Nginx) on it. 
+In this task, we will create a new container instance and deploy a web server (Nginx) on it. 
 
-1. On Azure Portal page, in **Search resources, services and docs (G+/)** box at the top of the portal, enter **Container instances (1)**, and then select **Container instances (2)** under services.
+1. On the Azure Portal page, in the **Search resources, services and docs (G+/)** box at the top of the portal, enter **Container instances (1)**, and then select **Container instances (2)** under services.
 
    ![](../images/lab3-image1.png)
    
-1. On **Container instances** blade, click **+ Create**. 
+1. On the **Container instances** blade, click **+ Create**. 
 
-1. On the **basics** tab. Provide the following basic details for creating a new container instance then click **Next : Networking >**.
-1. Using Pre-defined images: There are prebuilt container images provided by Azure. They are ready-to-use images that you can select when creating a container instance without needing to build or customize the image yourself.
-2. Next, Select Nginx or any other desired image from the list provided.
+1. On the **Basics** tab, provide the following basic details for creating a new container instance then click **Next : Networking >**.
+
 
 	| Setting| Value|
 	|----|----|
@@ -44,21 +43,24 @@ In this task, we will create a new container instance and deploying a web server
   ![](../images/lab3-1-u.png)
   ![](../images/lab3-2-u.png)
   
-1. On **Networking** tab . Specify the following and leave all other settings at their default values and click **Review + create (2)**.
+2. On the **Networking** tab . Specify the following and leave all other settings at their default values, then click **Next : Monitoring >** 
 
     | Setting| Value|
     |--|--|
-    | DNS name label| **mycontainerdns<inject key="DeploymentID" enableCopy="false" /> (1)** |
+    | DNS name label| **mycontainerdns<inject key="DeploymentID" enableCopy="true" /> (1)** |
     |||
 
     ![](../images/lab3-image2.png)
-    ![](../images/lab3-4-uu.png)
+
+1. De-select the checkbox beside the option **Enable container instance logs (1)**, then click **Review + create (2)**.
+
+   ![](../images/container-logs.png)
    
 	>**Note**: Your container will be publicly reachable at dns-name-label.region.azurecontainer.io. If you receive a **DNS name label not available** error message following the deployment.
 
 1. Click **Create** to create the container instance. 
 
-1. Monitor the deployment page and the **Notifications** page. 
+1. Monitor the deployment page and the **Notifications** page.
 
 1. While you wait you may be interested in viewing the [sample code behind this simple application](https://github.com/Azure-Samples/aci-helloworld). Browse the \app folder. 
 
@@ -71,14 +73,6 @@ In this task, we verify that the container instance is running by ensuring that 
    ![](../images/lab3-image3.png)
 
 1. On the **Overview** blade of **mycontainer**, ensure your container **Status** is **Running**.
-
- Overview of Checking Deployment Stats: After deploying your web server, you can monitor its deployment stats through the Azure portal:
-
-1.	Navigate to the created Azure container instance(ACI)
-2.	From the Overview tab, view metrics such as CPU, memory usage, and network statistics.
-3.	You can check the status of the Azure Container instance,  if it is Stopped/Running.
-4.	Manage the instance by starting or stopping it as needed
-
 
 1. Locate and copy the **Fully Qualified Domain Name (FQDN)**.
 
@@ -93,12 +87,18 @@ In this task, we verify that the container instance is running by ensuring that 
    >**Note**: You could also use the container IP address in your browser.
 
 <validation step="f87beab3-3bb6-467e-839f-c821f172a4b8" />
-   
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - If you receive a success message, you can proceed to the next task.
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide. 
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
-    
+ 
+> **Congratulations** on completing the task! 
+
+### Overview of Checking Deployment Stats:
+
+After deploying your web server, you can monitor its deployment stats through the Azure portal:
+
+1.	Navigate to the created Azure container instance (ACI)
+2.	From the Overview tab, view metrics such as CPU, memory usage, and network statistics.
+3.	You can check the status of the Azure Container instance,  if it is Stopped/Running.
+4.	Manage the instance by starting or stopping it as needed
+
 ## Review
 In this lab, you have completed:
 - Created a container instance
@@ -111,3 +111,5 @@ In this lab, you have completed:
 - https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-portal
   
 ## You have successfully completed this lab.
+
+To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for the task.
