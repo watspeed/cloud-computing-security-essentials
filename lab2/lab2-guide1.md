@@ -1,7 +1,5 @@
 # Lab 2 - Create a Linux virtual machine in the portal
 
-<!--- Welcome to your Microsoft Azure Fundamentals workshop! We've prepared a seamless environment for you to explore and learn about foundational knowledge of cloud concepts in general and Microsoft Azure in particular. Let's begin by making the most of this experience:--->
- 
 ## Lab Prerequisite
 
 In this lab, we have the following preconfigured:
@@ -22,7 +20,7 @@ Your virtual machine is your workhorse throughout the workshop. The lab guide is
  
 ## Exploring Your Lab Resources
  
-To get a better understanding of your lab resources and credentials, navigate to the **Environment Details** tab.
+To get a better understanding of your lab resources, navigate to the **Environment** tab.
  
   ![Explore Lab Resources](../images/env.png)
  
@@ -38,49 +36,34 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
  
   ![Manage Your Virtual Machine](../images/res.png)
  
-## **Lab Duration Extension**
-
-1. To extend the duration of the lab, kindly click the **Hourglass** icon in the top right corner of the lab environment. 
-
-    ![Manage Your Virtual Machine](../images/gext.png)
-
-    >**Note:** You will get the **Hourglass** icon when 10 minutes are remaining in the lab.
-
-2. Click **OK** to extend your lab duration.
- 
-   ![Manage Your Virtual Machine](images/gext2.png)
-
-3. If you have not extended the duration prior to when the lab is about to end, a pop-up will appear, giving you the option to extend. Click **OK** to proceed.
-
 ## Let's Get Started with Azure Portal
  
-1. On your virtual machine, click on the Azure Portal icon as shown below:
+1. On your virtual machine, open the AzureCreds text file as shown below:
+   ![Open AzureCreds document](../images/creds.png)  
+
+2. On your virtual machine, click on the Azure Portal icon as shown below:
  
    ![Launch Azure Portal](../images/sc900-image(1).png)
 
- 
-2. You'll see the **Sign into Microsoft Azure** tab. Here, enter your credentials:
- 
-   - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
- 
+3. You'll see the **Sign into Microsoft Azure** tab. Here, enter your username from the AzureCreds file:
+  
        ![Enter Your Username](../images/sc900-image-1.png)
  
-3. Next, provide your password:
- 
-   - **Password:** <inject key="AzureAdUserPassword"></inject>
- 
+4. Next, enter your password from the AzureCreds file:
+  
       ![Enter Your Password](../images/sc900-image-2.png)
  
-4. If you get a pop-up stating **Action Required** click on **Ask Later**.
+5. If you get a pop-up stating **Action Required** click on **Ask Later**.
 
-5. If prompted to stay signed in, you can click "No."
+6. If prompted to stay signed in, you can click "No."
  
-6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Maybe Later" to skip the tour.
- 
-7. Click **Next** from the bottom right corner to embark on your Lab journey!
+7. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Cancel" to skip the tour.
+8. You're now logged in, and are all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
+
+## Completing the lab
+
+Clicking **Next** from the bottom right corner of this lab guide will take you to the next page of the guide, where you'll complete your lab tasks!
  
     ![Start Your Azure Journey](../images/sc900-image(3).png)
 
- 8. Please review the **Note** sections in the lab guide for enhanced comprehension and improved lab performance.
- 
-Now you're all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
+As you work through the lab guide, please review the **Note** sections for enhanced comprehension and improved lab performance.
