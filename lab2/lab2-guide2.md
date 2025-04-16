@@ -127,13 +127,14 @@ In this task, install the Apache Web Server and access it.
 1. Return to your browser and copy the public IP address from the Native SSH tab. Then, open a new browser tab, paste the public IP address into the URL text box, and press the Enter key to browse to it. The custom created basic website shows up.
 
    ![](../images/public-ip.png)
+   
    ![](../images/apache.png)
 
    
     >**Congratulations** on completing the task!
     
 ### Overview of the Virtual Machine 
-In this section, you will get an overview of the Virtual Machine (VM). Below, you can see the "Essential" section, which repeats the configuration details of your VM.
+In this section, you will get an overview of the Virtual Machine (VM). Below, you can see the "Essentials" section, which repeats the configuration details of your VM.
 
 ![](../images/lab2_fig1.PNG) 
 
