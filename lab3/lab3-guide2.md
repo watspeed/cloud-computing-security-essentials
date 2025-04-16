@@ -39,7 +39,7 @@ In this task, we will create a new container instance and deploy a web server (N
 	| Image| **mcr.microsoft.com/oss/nginx/nginx:1.9.15-alpine (Linux)**|
 	| Size| ***Leave at the default***|
 
-test
+ 
 
   ![](../images/lab3-1-u.png)
   ![](../images/lab3-2-u.png)
