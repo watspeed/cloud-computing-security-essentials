@@ -40,14 +40,15 @@ In this task, we will create a new container instance and deploy a web server (N
 	| Image| **mcr.microsoft.com/oss/nginx/nginx:1.9.15-alpine (Linux)**|
 	| Size| ***Leave at the default***|
 
+
   ![](../images/lab3-1-u.png)
   ![](../images/lab3-2-u.png)
   
-2. On the **Networking** tab . Specify the following and leave all other settings at their default values, then click **Next : Monitoring >** 
+2. On the **Networking** tab, specify the following and leave all other settings at their default values, then click **Next : Monitoring >** 
 
     | Setting| Value|
     |--|--|
-    | DNS name label| **mycontainerdns<inject key="DeploymentID" enableCopy="true" /> (1)** |
+    | DNS name label| **mycontainerdns<inject key="DeploymentID" enableCopy="false" /> (1)** |
     |||
 
     ![](../images/lab3-image2.png)
