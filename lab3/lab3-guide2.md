@@ -27,10 +27,9 @@ In this task, we will create a new container instance and deploy a web server (N
    
 1. On the **Container instances** blade, click **+ Create**. 
 
-1. On the **Basics** tab, provide the following basic details for creating a new container instance then click **Next : Networking >**.
+1. On the **Basics** tab, provide the following basic details for creating a new container instance then click **Next : Networking >** .
 
-
-	| Setting| Value|
+	| Setting | Value |
 	|----|----|
 	| Subscription | **Choose your subscription** |
 	| Resource group | **myRGContainer-<inject key="DeploymentID" enableCopy="false" />** |
@@ -40,6 +39,7 @@ In this task, we will create a new container instance and deploy a web server (N
 	| Image| **mcr.microsoft.com/oss/nginx/nginx:1.9.15-alpine (Linux)**|
 	| Size| ***Leave at the default***|
 
+test
 
   ![](../images/lab3-1-u.png)
   ![](../images/lab3-2-u.png)
