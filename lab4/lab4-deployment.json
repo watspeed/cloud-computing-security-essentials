@@ -4,9 +4,13 @@
     "Language": "English",
     "Files": [
       {
-        "RawFilePath": "https://raw.githubusercontent.com/watspeed/cloud-computing-security-essentials/refs/heads/main/lab4/lab4-guide.md",
+        "RawFilePath": "https://raw.githubusercontent.com/watspeed/cloud-computing-security-essentials/refs/heads/main/lab4/lab4-guide1.md",
         "Order": 1
-      }     
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/watspeed/cloud-computing-security-essentials/refs/heads/main/lab4/lab4-guide2.md",
+        "Order": 2
+      }
     ]
   },
 
