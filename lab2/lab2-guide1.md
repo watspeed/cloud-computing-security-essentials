@@ -47,11 +47,11 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
 
 3. You'll see the **Sign into Microsoft Azure** tab. Here, enter your username from the AzureCreds file:
   
-       ![Enter Your Username](../images/sc900-image-1.png)
+   ![Enter Your Username](../images/sc900-image-1.png)
  
 4. Next, enter your password from the AzureCreds file:
   
-      ![Enter Your Password](../images/sc900-image-2.png)
+   ![Enter Your Password](../images/sc900-image-2.png)
  
 5. If you get a pop-up stating **Action Required** click on **Ask Later**.
 
