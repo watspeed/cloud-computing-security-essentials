@@ -11,19 +11,19 @@ In this lab, you will complete the following tasks:
 + Task 1: Create Azure Container Instances (ACI) and Deploying a Web Server on it.
 + Task 2: Verify deployment of the container instance
 
-## Estimated timing: 15 minutes
+Estimated timing: 15 minutes
 
 ## Architecture diagram
 
-![](images/az900lab03.PNG) 
+![](../images/az900lab03.PNG) 
 
-### Task 1: Create Azure Container Instances (ACI) and Deploying a Web Server (Nginx) on it.
+## Task 1: Create Azure Container Instances (ACI) and Deploying a Web Server (Nginx) on it.
 
 In this task, we will create a new container instance and deploying a web server (Nginx) on it. 
 
 1. On Azure Portal page, in **Search resources, services and docs (G+/)** box at the top of the portal, enter **Container instances (1)**, and then select **Container instances (2)** under services.
 
-   ![](images/lab3-image1.png)
+   ![](../images/lab3-image1.png)
    
 1. On **Container instances** blade, click **+ Create**. 
 
@@ -41,8 +41,8 @@ In this task, we will create a new container instance and deploying a web server
 	| Image| **mcr.microsoft.com/oss/nginx/nginx:1.9.15-alpine (Linux)**|
 	| Size| ***Leave at the default***|
 
-  ![](images/lab3-1-u.png)
-  ![](images/lab3-2-u.png)
+  ![](../images/lab3-1-u.png)
+  ![](../images/lab3-2-u.png)
   
 1. On **Networking** tab . Specify the following and leave all other settings at their default values and click **Review + create (2)**.
 
@@ -51,8 +51,8 @@ In this task, we will create a new container instance and deploying a web server
     | DNS name label| **mycontainerdns<inject key="DeploymentID" enableCopy="false" /> (1)** |
     |||
 
-    ![](images/lab3-image2.png)
-    ![](images/lab3-4-uu.png)
+    ![](../images/lab3-image2.png)
+    ![](../images/lab3-4-uu.png)
    
 	>**Note**: Your container will be publicly reachable at dns-name-label.region.azurecontainer.io. If you receive a **DNS name label not available** error message following the deployment.
 
@@ -62,13 +62,13 @@ In this task, we will create a new container instance and deploying a web server
 
 1. While you wait you may be interested in viewing the [sample code behind this simple application](https://github.com/Azure-Samples/aci-helloworld). Browse the \app folder. 
 
-### Task 2: Verify deployment of the container instance
+## Task 2: Verify deployment of the container instance
 
 In this task, we verify that the container instance is running by ensuring that the welcome page displays.
 
 1. After the deployment is complete, click the **Go to resource** button.
 
-   ![](images/lab3-image3.png)
+   ![](../images/lab3-image3.png)
 
 1. On the **Overview** blade of **mycontainer**, ensure your container **Status** is **Running**.
 
@@ -82,13 +82,13 @@ In this task, we verify that the container instance is running by ensuring that 
 
 1. Locate and copy the **Fully Qualified Domain Name (FQDN)**.
 
-   ![](images/lab3-5-u.png)
+   ![](../images/lab3-5-u.png)
 
 1. Paste the container's FQDN into the new browser tab and press **Enter**. The Welcome page should display.
 
    >**Note**: It might take 3 - 5 minutes to load the page.
  
-   ![](images/lab3-6-u.png)
+   ![](../images/lab3-6-u.png)
 	
    >**Note**: You could also use the container IP address in your browser.
 
@@ -99,7 +99,7 @@ In this task, we verify that the container instance is running by ensuring that 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide. 
 > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
     
-### Review
+## Review
 In this lab, you have completed:
 - Created a container instance
 - Verified deployment of the container instance
