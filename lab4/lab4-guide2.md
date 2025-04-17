@@ -94,12 +94,6 @@ In this task, you will create and configure an Azure Storage account.
 
       ![image](../images/lab4-18.png)
       
-   > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-   > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-   > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-   > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-   > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
-
 ## Task 2: Create and configure secure blob storage
 
 In this task, you will create a blob container and upload a blob into it.
@@ -200,12 +194,6 @@ In this task, you will create a blob container and upload a blob into it.
     > **Note**: This is expected since now your access is authorized based on the newly generated SAS token.
 
     > **Note**: Save the blob SAS URL. You will need it later in this lab.
-    
-   > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-   > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-   > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-   > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-   > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
 ## Task 3: Create and configure an Azure File storage
 In this task, you will create and configure Azure Files shares.
@@ -243,12 +231,6 @@ In this task, you will create and configure Azure Files shares.
 
 1. Click the **az104-07-folder** and verify that **az104-07-file.txt** appears in the list of files.
     
-   > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-   > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
-   > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-   > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-   > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
-
 ### Restrict network access to the storage account
 
 1. In the **Search resources, services, and docs (G+/)** box at the top of the portal, search for and select **Virtual networks**.
