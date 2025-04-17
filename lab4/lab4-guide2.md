@@ -32,7 +32,7 @@ Estimated timing: 45 minutes
 ## Task 1: Create and configure Azure Storage accounts
 In this task, you will create and configure an Azure Storage account.
 
-1. On the Azure Portal page, in the **Search resources, services and docs (G+/)** box at the top of the portal, enter **Storage accounts**, and then select **Storage accounts** under services.
+1. On the Azure Portal page, in the **Search resources, services, and docs (G+/)** box at the top of the portal, enter **Storage accounts**, and then select **Storage accounts** under services.
 
     ![image](../images/lab4-14.png)
 
@@ -79,7 +79,7 @@ In this task, you will create and configure an Azure Storage account.
 
 1. In the **Security + Networking** section, select **Networking**. Notice public network access is disabled.
 
-    + Change the **public access level** to **Enabled from all network**.
+    + Change the **Public access level** to **Enabled from all networks**.
     + Be sure to **Save** your changes. 
 
 1. In the **Data management** section, view the **Redundancy** blade. Notice the information about your primary data center locations. Then click **Next**.
@@ -133,9 +133,9 @@ In this task, you will create a blob container and upload a blob into it.
 
 ### Manage blob uploads
 
-1. In the list of containers, select **az104-07-container** and click **Upload** within the **Upload blob** pane, click on **Browse for files**.
+1. Returning to the list of containers, click on **az104-07-container**. Then, click **Upload**.
 
-1. Browse to **C:\AllFiles\AZ-104-MicrosoftAzureAdministrator-master\Allfiles\Labs\07\\LICENSE** on your lab computer and click **Open**.
+1. Within the **Upload blob** pane click on **Browse for files**. Browse to **C:\AllFiles\AZ-104-MicrosoftAzureAdministrator-Lab-Files\Allfiles\Labs\07\\LICENSE** on your lab computer and click **Open**.
 
 1. On the **Upload blob** blade, expand the **Advanced** section and specify the following settings (leave others with their default values):
 
@@ -189,7 +189,7 @@ In this task, you will create a blob container and upload a blob into it.
    
 1. Click **Generate SAS token and URL**.
 
-1. Click the **Copy to clipboard** button next to the **Blob SAS URL** entry (you need to scroll down).
+1. Scroll down, then click the **Copy to clipboard** button next to the **Blob SAS URL** entry.
 
     ![image](../images/lab4-clipboard.png)
 
@@ -217,15 +217,15 @@ In this task, you will create and configure Azure Files shares.
     | Setting | Value |
     | --- | --- |
     | Name | **az104-07-share** |
-    | Tier | **transaction optimized** |
+    | Tier | **Transaction optimized** |
 
-1. In the Backup tab, uncheck **Enable backup** option and then click on **Review + Create** > **Create**.
+1. Click **Next: Backup**, then in the Backup tab, uncheck **Enable backup** option and then click on **Review + Create**, then **Create**.
 
 1. Click the newly created file share and note the information available on the **az104-07-share** blade.
 
 ### Explore Storage Browser and upload a file
 
-1. Return to your storage account and select **Storage Browser**. The Azure Storage Browser is a portal tool that lets you quickly view all the storage services under your account.
+1. Return to your storage account and select **Storage browser**. The Azure Storage Browser is a portal tool that lets you quickly view all the storage services under your account.
 
 1. Select **File shares** and verify your **az104-07-share** directory is present.
 
@@ -233,15 +233,15 @@ In this task, you will create and configure Azure Files shares.
 
     ![image](../images/lab4-23.png)
 
-1. Open file explorer and create text document named **az104-07-file.txt**.
+1. Open file explorer and in the Documents folder create a text document named **az104-07-file.txt**. The file can remain blank inside.
 
-1. Navigate to File share and select **az104-07-share**.
+1. Navigate to **File shares** and select **az104-07-share**.
 
-1. Select **Upload**. Browse to a file **az104-07-file.txt**, and then click **Upload**.
+1. Select **Upload**. Browse to your new file **az104-07-file.txt**, and then click **Upload**.
 
     >**Note**: You can view file shares and manage those shares in the Storage Browser. There are currently no restrictions.
 
-1. Click **az104-07-folder** and verify that **az104-07-file.txt** appears in the list of files.
+1. Click the **az104-07-folder** and verify that **az104-07-file.txt** appears in the list of files.
     
    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
    > - Navigate to the Lab Validation Page, from the upper right corner in the lab guide section.
@@ -251,7 +251,7 @@ In this task, you will create and configure Azure Files shares.
 
 ### Restrict network access to the storage account
 
-1. In the portal, search for and select **Virtual networks**.
+1. In the **Search resources, services, and docs (G+/)** box at the top of the portal, search for and select **Virtual networks**.
 
 1. Select **+ Create**. Select your resource group **az104-07-rg1** and give the virtual network a **name**, `vnet1`.
 
@@ -271,15 +271,15 @@ In this task, you will create and configure Azure Files shares.
 
 1. Under **Firewalls and virtual networks** tab, for **Public network access** select **Enabled from selected virtual networks and IP addresses**. 
 
-1. Select **add existing virtual network** and select **vnet1** and **default** subnet, select **Add**.
+1. Select **Add existing virtual network** and select **vnet1** and **default** subnet, select **Add**.
 
-1. Be sure to **Save** your changes.
+1. Be sure to **Save** your changes at the top of the tab before navigating away.
 
     >**Note:** The storage account should now only be accessed from the virtual network you just created. 
 
-1. Return to your **Storage account** named **strgaz104t07<inject key="DeploymentID" enableCopy="false" />** and select the **Storage browser** then expand **Blob containers** and select **az104-07-container** and **Refresh** the page.  
+1. Select the **Storage browser** blade and **Refresh** the page. Then click on **Blob containers** and select **az104-07-container**.  
 
-    >**Note:** You should receive a message *not authorized to perform this operation*. You are not connecting from the virtual network. It may take a couple of minutes for this to take effect.
+    >**Note:** You should receive a message *not authorized to perform this operation*, since you are not connecting from the virtual network. It may take a couple of minutes for this to take effect, so refresh the page if you do not receive this message.
 
      ![image](../images/lab4-24.png)
    
@@ -298,13 +298,13 @@ Congratulations on completing the lab. Here are the main takeaways for this lab.
 + [Optimize your cost with Azure Blob Storage](https://learn.microsoft.com/training/modules/optimize-your-cost-azure-blob-storage/). Learn how to optimize your cost with Azure Blob Storage.
 + [Control access to Azure Storage with shared access signatures](https://learn.microsoft.com/training/modules/control-access-to-azure-storage-with-sas/). Grant access to data stored in your Azure Storage accounts securely by using shared access signatures.
 
-### Review
+## Review
 In this lab, you have completed:
 - Create and configure a storage account. 
 - Create and configure secure blob storage.
 - Create and configure secure Azure file storage.
 
 
-### You have successfully completed the lab
+## You have successfully completed the lab
 
 To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task.
