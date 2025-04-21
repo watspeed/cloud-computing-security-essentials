@@ -33,7 +33,7 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
     | Subscription | **Accept default subscription** (1)|
     | Resource group | **myRGVM-<inject key="DeploymentID" enableCopy="false"/>** (2) |
     | Virtual machine name | **myVm** (3)|
-    | Location | **(US) East US** (4)|
+    | Location | **(Canada) Canada Central** (4)|
     | Image | **Ubuntu Server 20.04 LTS - x64 Gen2** (5)|
     | Size | **Standard_D2s_v3** (6)|
     | Authentication type| **Password** |
