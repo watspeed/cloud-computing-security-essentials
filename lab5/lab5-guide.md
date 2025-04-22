@@ -11,7 +11,7 @@ First, open a terminal application. Click on the terminal application on the des
 
 ![](../images/lab1_fig1.png)
 
-The terminal opens showing the shell prompt as shown in the figure. The shell allows running commands and applications.
+The terminal opens showing the shell prompt. The shell allows running commands and applications.
 
 ![](../images/lab1_fig2.png)
 
@@ -35,11 +35,12 @@ The output shows crucial data about the network interfaces, like:
 - The hardware MAC address.
 - The IP address (inet), netmask, and broadcast address.
 - The MTU (Maximum Transmission Unit) value.
-• Display more details with ifconfig
 
-In the output baove the interface eth0 has the IPv4 address of 10.0.0.4 and IPv6 address of fe80::222::48ff:fe21:1445.
+In the output above the interface eth0 has the IPv4 address of 10.0.0.4 and IPv6 address of fe80::222::48ff:fe21:1445.
 
-The verbose option (-v) prints a more detailed output. Depending on the system, the outcome is either the same as ifconfig without arguments or slightly more in-depth.
+• Display more details with `ifconfig`
+
+The verbose option (`-v`) prints a more detailed output. Depending on the system, the outcome is either the same as `ifconfig` without arguments or slightly more in-depth.
 
 ```bash
 ifconfig -v
@@ -47,7 +48,9 @@ ifconfig -v
 
 The output of the command shows additional stats about each interface, including the number of packets transmitted (TX) or received (RX) and stats about all transmission errors.
 
-**Controlling Interfaces.** ifconfig can also be used to disable or enable an interface.
+### Controlling Interfaces
+
+`ifconfig` can also be used to disable or enable an interface.
 
 To disable the `enp0s3` interface, you can use the following command:
 
@@ -55,14 +58,14 @@ To disable the `enp0s3` interface, you can use the following command:
 sudo ifconfig enp0s3 down
 ```
 
-Use ifconfig to verify that the interface is down.
+Use `ifconfig` to verify that the interface is down.
 
 To bring an interface up again, you can use the following command:
 
 ```
 sudo ifconfig enp0s3 up
 ```
-Verify it with ifconfig.
+Verify it with `ifconfig`.
 
 ## 2. Check Local Machine Network with `ip`
 The `ip` command is the replacement for `ifconfig` and can do the same functionality and more. To list all the devices on a machine, use the following command:
@@ -83,7 +86,7 @@ ip addr
 
 The output shows the IPv4 and/or IPv6 addresses.
 
-To check the stats for the interface, use the "-s" option:
+To check the states for the interface, use the "-s" option:
 
 ```
 ip -s -s link show
@@ -99,7 +102,7 @@ This shows the states on the transmission and reception side, including the numb
 
 The `netstat` command, as the name suggests, displays an overview of all the network connections in the device. The table shows details about the connection protocol, address, and the current state of the network.
 
-The netstat command can be used without parameters to display active network connections:
+The `netstat` command can be used without parameters to display active network connections:
 
 ```
 netstat
@@ -107,7 +110,7 @@ netstat
 
 ![](../images/lab8-2.png)
 
-The output displays details of active internet connections across six columns:
+The first list in the output displays details of active internet connections across six columns:
 - Proto: Protocol of the connection (e.g., TCP, UDP).
 - Recv-Q: Number of bytes received and waiting in the queue to be processed.
 - Send-Q: Number of bytes waiting in the queue to be sent.
@@ -129,17 +132,17 @@ You can expand the netstat command with options to filter or customize output:
 netstat [option]
 ```
 
-OPTION	DESCRIPTION
-- -a	Display all active TCP and UDP connections and listening ports.
-- -t	Display only TCP connections.
-- -u	Display only UDP connections.
-- -l	Show only sockets that are actively listening for incoming connections.
-- -p	Display the Process ID (PID) and program name associated with each socket.
-- -n	Display addresses and port numbers in numeric format without resolving names.
-- -r	Display the kernel routing table.
-- -s	Provide summary statistics for each protocol.
-- -c	Continuously update the output every second.
-- -e	Display extended information, including timers and user IDs.
+OPTION	  DESCRIPTION
+- `-a`	  Display all active TCP and UDP connections and listening ports.
+- `-t`	  Display only TCP connections.
+- `-u`	  Display only UDP connections.
+- `-l`	  Show only sockets that are actively listening for incoming connections.
+- `-p`	  Display the Process ID (PID) and program name associated with each socket.
+- `-n`	  Display addresses and port numbers in numeric format without resolving names.
+- `-r`	  Display the kernel routing table.
+- `-s`	  Provide summary statistics for each protocol.
+- `-c`	  Continuously update the output every second.
+- `-e`	  Display extended information, including timers and user IDs.
 
 ### `ss`
 
@@ -153,7 +156,7 @@ ss
 
 ![](../images/lab8-3.png)
 
-As with netstat, you can expand the `ss` command with options to filter or customize output.
+As with `netstat`, you can expand the `ss` command with options to filter or customize output.
 
 ## 4. Checking Network Operations
 
@@ -169,7 +172,7 @@ ping www.facebook.com
 
 ![](../images/lab8-4-u.png)
 
-The output shows the Facebook server contacted for the ping (star-mini.c10r.facebook.com) and its IP address (31.13.66.35). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
+The output shows the Facebook server contacted for the ping (star-mini.c10r.facebook.com) and its IP address (31.13.66.35). It also shows multiple trials for ping and their round-trip times. Once the command is interrupted with `CTRL + C`, it shows stats about all trials and the average round-trip time.
 
 ### `traceroute`
 
@@ -179,9 +182,9 @@ Another command helpful for checking and debugging connectivity is `traceroute`.
 
 `traceroute` sends the first echo packet with a TTL of 1 and increments the TTL by 1 on each subsequent transmission, until the destination responds or until the maximum TTL is reached. The ICMP "Time Exceeded" messages that intermediate routers send back show the route. Note, however, that some routers silently drop packets that have expired TTLs, and these packets are invisible to `traceroute`.
 
-`traceroute` prints out an ordered list of the intermediate routers that return ICMP "Time Exceeded" messages. Using the -d option with the traceroute command instructs traceroute not to perform a DNS lookup on each IP address, so that traceroute reports the IP address of the near-side interface of the routers.
+`traceroute` prints out an ordered list of the intermediate routers that return ICMP "Time Exceeded" messages. Using the `-d` option with the `traceroute` command instructs `traceroute` not to perform a DNS lookup on each IP address, so that `traceroute` reports the IP address of the near-side interface of the routers.
 
-Compared to ping, the primary difference between ping and traceroute is that while ping simply tells you if a server is reachable and the time it takes to transmit and receive data, traceroute details the precise route info, router by router, as well as the time it took for each hop.
+Compared to `ping`, the primary difference between `ping` and `traceroute` is that while `ping` simply tells you if a server is reachable and the time it takes to transmit and receive data, `traceroute` details the precise route info, router by router, as well as the time it took for each hop.
 
 To check the path to facebook.com, use the following command:
 
@@ -189,7 +192,7 @@ To check the path to facebook.com, use the following command:
 traceroute www.facebook.com
 ```
 
-Some cloud providers do not support traverout in their platform since it can be used by milisouse users to infer network detials.
+Some cloud providers do not support `tracerout` in their platform since it can be used by malicious users to infer network details.
 
 ## 5. Inspecting the Network Communication
 
@@ -197,7 +200,7 @@ Some cloud providers do not support traverout in their platform since it can be 
 
 `tcpdump` is a command-line tool used to capture and examine network traffic on your system. It's commonly used for troubleshooting network problems and as a security tool. `tcpdump` is very flexible, with many options and filters to suit different needs. Since it runs in the command line, it's perfect for use on remote servers or devices without a graphical interface.
 
-To use `tcpdump`, we need to determine which netwrok interface is active using `ifconfig` or `ip addr` as we mentioned earlier. We will use `eth0` interface to monitor network traffic. Since `tcpdump` works with IP addresses, resolve `www.facebook.com` to its IP address using the `ping` command.
+To use `tcpdump`, we need to determine which network interface is active using `ifconfig` or `ip addr` as we mentioned earlier. We will use `eth0` interface to monitor network traffic. Since `tcpdump` works with IP addresses, resolve `www.facebook.com` to its IP address using the `ping` command.
 
 ```
 ping www.facebook.com
@@ -209,7 +212,7 @@ PING star-mini.c10r.facebook.com (31.13.66.35) 56(84) bytes of data.
 ```
 In this case, the IP address of `www.facebook.com` is `31.13.66.35`.
 
-You will run `tcpdump` to capture traffic to and from the resolved IP address (31.13.66.35) with the the active network interface `eth0`. Use the following command:
+You will run `tcpdump` to capture traffic to and from the resolved IP address (31.13.66.35) with the active network interface `eth0`. Use the following command:
 
 ```
 sudo tcpdump -i eth0 host 31.13.66.35
@@ -255,9 +258,9 @@ In the output above, we can see the packets involved in establishing a TCP conne
 `tcpdump` allows for inspecting the connection and the TCP state for packets sent or recieved on the interface. 
 
 ### `Tshark/Wireshark`
-`Wireshark` is another tool used to capture and inspect packets in real-time. It allows users to monitor network traffic, troubleshoot issues, and analyze communication between devices. `Wireshark` provides detailed insights into network protocols such as DNS, HTTP, TCP, and UDP. It comes with two tools. tshark is a command line tool that allows for scripting and automatig inspection, and wireshark is the same tool with a graphical user interface that allows user driven inspection and exploration of the network traffic. Wireshark comes with a graphical interface to help with filtering, captureing, and analyzing packets, helping users identify connectivity problems, security vulnerabilities, or performance bottlenecks in networks.
+`Wireshark` is another tool used to capture and inspect packets in real-time. It allows users to monitor network traffic, troubleshoot issues, and analyze communication between devices. `Wireshark` provides detailed insights into network protocols such as DNS, HTTP, TCP, and UDP. It comes with two tools. `tshark` is a command line tool that allows for scripting and automating inspection, and `wireshark` is the same tool with a graphical user interface that allows user driven inspection and exploration of the network traffic. `Wireshark` comes with a graphical interface to help with filtering, capturing, and analyzing packets, helping users identify connectivity problems, security vulnerabilities, or performance bottlenecks in networks.
 
-- Launch `Wireshark` from your desktop.
+- Launch `Wireshark` from the virtual machine desktop.
 - You will see a list of available network interfaces, choose the interface connected to the internet `eth0`.
 - We will inspect the traffic on the `eth0` interface. Double-click the interface to start capturing packets
 
@@ -275,40 +278,41 @@ In the output above, we can see the packets involved in establishing a TCP conne
 
 - To filter traffic while capturing or viewing, use the filter bar at the top.
 - There are some common filters you can use like:
-  * DNS Traffic: dns
+  * DNS Traffic: `dns`
 
-    You can use the filter `dns` in the filter bar to isolate DNS packets. In the output you will a DNS query that requests the IP address for `www.facebook.com` domain and DNS response.
+    You can use the filter `dns` in the filter bar to isolate DNS packets. In the output you will see a DNS query that requests the IP address for `www.facebook.com` domain and DNS response.
     When a system tries to resolve a domain name, it sends a DNS query to request the corresponding IP address. Modern systems often request both IPv4 (A record) and IPv6 (AAAA record) addresses, resulting in two queries. However, for simplicity, we will focus on the IPv4 response.
+
     Click on one of the packets at the top of the screen. This will show the packets details in the lower screen.
     The DNS query (Packet No. 431) asks for the IPv4 address of `www.facebook.com`.
-    The DNS response (Packet No. 433) on the screen, shows the DNS response. with the IPv4 address.
+    The DNS response (Packet No. 433) on the screen, shows the DNS response with the IPv4 address.
     
     ![](../images/lab8-wireshark-dns-111.png)
 
     The response indicates that the facebook IP address is `157.240.229.35`
 
-  * HTTP Traffic: http
+  * HTTP Traffic: `http`
 
     ![](../images/lab8-wk-http-111.png)
 
-In this output you see all the HTTP related packet. The outputs shows mutliple HTTP request and responce packets. This is because modern websites may store different objects such as images and videos on different servers and are retrieved through a seperate HTTP request.
+    In this output you see all the HTTP related packets. The output shows multiple HTTP request and response packets. This is because modern websites may store different objects such as images and videos on different servers and are retrieved through a separate HTTP request.
 
-- Find the first HTTP request. In our example it is the first HTTP GET request at the top (No. 438).
+    - Find the first HTTP request. In our example it is the first HTTP GET request at the top (No. 438).
   The lower screen shows the packet details. It shows all the header of the packets including ethernet, IP, TCP, and HTTP. The HTTP request shows a GET request for www.facebook.com
 
-- Following that request there is a HTTP response.
-  Find the packet in your output. In out output it is packet No. 443
+    - Following that request there is a HTTP response.
+      Find the packet in your output. In our output it is packet No. 443
   
-    ![](../images/lab8-wk-http-222.png)
+      ![](../images/lab8-wk-http-222.png)
   
-  The response states response code of 200. Which indicates a successful processing of the HTTP request.
-  At the end of the response we can see the bytes of the returned page.
+      The response states response code of 200. Which indicates a successful processing of the HTTP request.
+      At the end of the response we can see the bytes of the returned page.
     
-- Also, you can filter the packets using the host name: `host.name == "www.facebook.com"` 
+    - Also, you can filter the packets using the host name: `http.host == "www.facebook.com"` 
 
-    ![](../images/lab8-wk-http-333.png)
+      ![](../images/lab8-wk-http-333.png)
 
-## 6. Inspect Network Vulnerability with nmap 
+## 6. Inspect Network Vulnerability with `nmap`
 
 ### `nmap`
 The `nmap` (Network Mapper) command is a powerful tool used for network exploration and security auditing. It allows you to discover hosts, services, and open ports on a network. In this lab, we will use Docker containers to simulate the two hosts. Files needed for this section are included in Labsetup.zip, which can be fetched by running the following commands.
@@ -410,7 +414,7 @@ The following example shows how `nmap` works. The command `nmap www.facebook.com
     
   ![](../images/lab8-444-u.png)
 
-The `nmap` output provides an overview of the publicly accessible services on the target domain `www.facebook.com`. The scan starts by identifying that the host is online and reachable, confirming connectivity. Then, it shows the domain resolves to the IP address "157.240.22.35", which is the primary target of the scan. Also, there is a reverse DNS (rDNS) lookup of the IP address reveals the hostname "edge-star-mini-shv-01-sjc3.facebook.com", which is a server used by Facebook. 
+The `nmap` output provides an overview of the publicly accessible services on the target domain `www.facebook.com`. The scan starts by identifying that the host is online and reachable, confirming connectivity. Then, it shows the domain resolves to the IP address "157.240.22.35", which is the primary target of the scan. Also, there is a reverse DNS (rDNS) lookup of the IP address which reveals the hostname "edge-star-mini-shv-01-sjc3.facebook.com", which is a server used by Facebook. 
 The `nmap` results show that two ports are open:
 - Port 80 (HTTP): which is used for standard, unsecured web traffic.
 - Port 443 (HTTPS): which is used for secure, encrypted web traffic over HTTPS. 
@@ -421,3 +425,7 @@ The `nmap` results show that two ports are open:
   
   ![](images/lab8-333-u.png)
   --->
+
+## You have successfully completed this lab.
+
+To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task.
