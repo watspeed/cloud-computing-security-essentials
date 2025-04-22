@@ -9,11 +9,11 @@ All the commands will be run using the command line interface (CLI). The CLI is 
 
 First, open a terminal application. Click on the terminal application on the desktop.
 
-![](images/lab1_fig1.png)
+![](../images/lab1_fig1.png)
 
 The terminal opens showing the shell prompt as shown in the figure. The shell allows running commands and applications.
 
-![](images/lab1_fig2.png)
+![](../images/lab1_fig2.png)
 
 ## 1. Check Local Machine Network with `ifconfig`
 
@@ -27,7 +27,7 @@ One of the common tools is `ifconfig`. `ifconfig` is a legacy command and is slo
 ifconfig
 ```
 
-![](images/lab8-1.png)
+![](../images/lab8-1.png)
 
 The output shows crucial data about the network interfaces, like:
 
@@ -79,7 +79,7 @@ To view the IP addresses as well, use the following command:
 ip addr
 ```
 
-![](images/lab8-5.png)
+![](../images/lab8-5.png)
 
 The output shows the IPv4 and/or IPv6 addresses.
 
@@ -89,7 +89,7 @@ To check the stats for the interface, use the "-s" option:
 ip -s -s link show
 ```
 
-![](images/lab8-6.png)
+![](../images/lab8-6.png)
 
 This shows the states on the transmission and reception side, including the number of packets processed and errors experienced.
 
@@ -105,7 +105,7 @@ The netstat command can be used without parameters to display active network con
 netstat
 ```
 
-![](images/lab8-2.png)
+![](../images/lab8-2.png)
 
 The output displays details of active internet connections across six columns:
 - Proto: Protocol of the connection (e.g., TCP, UDP).
@@ -151,7 +151,7 @@ Use the `ss` command without arguments to list all connections on a machine:
 ss
 ```
 
-![](images/lab8-3.png)
+![](../images/lab8-3.png)
 
 As with netstat, you can expand the `ss` command with options to filter or customize output.
 
@@ -167,7 +167,7 @@ For instance, to check the connectivity to facebook.com, use the following comma
 ping www.facebook.com
 ```
 
-![](images/lab8-4-u.png)
+![](../images/lab8-4-u.png)
 
 The output shows the Facebook server contacted for the ping (star-mini.c10r.facebook.com) and its IP address (31.13.66.35). It also shows multiple trials for ping and their round-trip times. At the end of the command, it shows stats about all trials and the average round-trip time.
 
@@ -223,7 +223,7 @@ curl www.facebook.com
 
 This will send HTTP requests, and `tcpdump` will capture the packets. The output of `tcpdump` will display the captured packets as shown in the following figure:
 
-![](images/lab8-7.png)
+![](../images/lab8-7.png)
 
 <!---
 In the output above we can see the packets related to the TCP connection used to send the HTTP Get request. The first four packets are:
@@ -261,7 +261,7 @@ In the output above, we can see the packets involved in establishing a TCP conne
 - You will see a list of available network interfaces, choose the interface connected to the internet `eth0`.
 - We will inspect the traffic on the `eth0` interface. Double-click the interface to start capturing packets
 
-  ![](images/lab8-8.png)
+  ![](../images/lab8-8.png)
   
 - Now we need to generate some traffic on the interface. We will visit the `www.facebook.com` site. Use the following command to get the facebook page.
 
@@ -271,7 +271,7 @@ In the output above, we can see the packets involved in establishing a TCP conne
 
 - Check the Wireshark interface for the captured packets. You will see a long list of packets captured at the interface.
 
-    ![](images/lab8-wireshark-111.png)
+    ![](../images/lab8-wireshark-111.png)
 
 - To filter traffic while capturing or viewing, use the filter bar at the top.
 - There are some common filters you can use like:
@@ -283,13 +283,13 @@ In the output above, we can see the packets involved in establishing a TCP conne
     The DNS query (Packet No. 431) asks for the IPv4 address of `www.facebook.com`.
     The DNS response (Packet No. 433) on the screen, shows the DNS response. with the IPv4 address.
     
-    ![](images/lab8-wireshark-dns-111.png)
+    ![](../images/lab8-wireshark-dns-111.png)
 
     The response indicates that the facebook IP address is `157.240.229.35`
 
   * HTTP Traffic: http
 
-    ![](images/lab8-wk-http-111.png)
+    ![](../images/lab8-wk-http-111.png)
 
 In this output you see all the HTTP related packet. The outputs shows mutliple HTTP request and responce packets. This is because modern websites may store different objects such as images and videos on different servers and are retrieved through a seperate HTTP request.
 
@@ -299,14 +299,14 @@ In this output you see all the HTTP related packet. The outputs shows mutliple H
 - Following that request there is a HTTP response.
   Find the packet in your output. In out output it is packet No. 443
   
-    ![](images/lab8-wk-http-222.png)
+    ![](../images/lab8-wk-http-222.png)
   
   The response states response code of 200. Which indicates a successful processing of the HTTP request.
   At the end of the response we can see the bytes of the returned page.
     
 - Also, you can filter the packets using the host name: `host.name == "www.facebook.com"` 
 
-    ![](images/lab8-wk-http-333.png)
+    ![](../images/lab8-wk-http-333.png)
 
 ## 6. Inspect Network Vulnerability with nmap 
 
@@ -342,7 +342,7 @@ $ docker-compose up
 $ dcup
 ```
 
-![](images/lab8-111-u.png)
+   ![](../images/lab8-111-u.png)
 
 **Stop and Shut Down the Docker Container**. When you’re finished or need to reset the environment, shut down the running container to release resources.
 
@@ -368,7 +368,7 @@ $ dockps
 #### Output
 The output will list all running Docker containers, each with its unique ID and assigned name. An example output might look like this:
 
-![](images/lab8-222-u.png)
+![](../images/lab8-222-u.png)
 
 Each line includes the container ID and its corresponding name, along with their assigned IP addresses.
 
@@ -408,7 +408,7 @@ You need to install `nmap` using the following instructions:
 
 The following example shows how `nmap` works. The command `nmap www.facebook.com` was used to scan a public web server to discover accessible services.
     
-  ![](images/lab8-444-u.png)
+  ![](../images/lab8-444-u.png)
 
 The `nmap` output provides an overview of the publicly accessible services on the target domain `www.facebook.com`. The scan starts by identifying that the host is online and reachable, confirming connectivity. Then, it shows the domain resolves to the IP address "157.240.22.35", which is the primary target of the scan. Also, there is a reverse DNS (rDNS) lookup of the IP address reveals the hostname "edge-star-mini-shv-01-sjc3.facebook.com", which is a server used by Facebook. 
 The `nmap` results show that two ports are open:
