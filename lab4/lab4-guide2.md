@@ -59,11 +59,11 @@ In this task, you will create and configure an Azure Storage account.
 
 1. On the deployment blade, click **Go to resource** to display the Azure Storage account blade.
 
-1. On the Storage account blade, in the **Data management (1)** section, click **Redundancy (2)** and note the secondary location.
+1. On the Storage account blade, in the **Data management (1)** section, click **Redundancy (2)** and note the secondary location **(3)**.
 
    ![image](../images/lab4-dm.png)
 
-1. In the same blade **Redundancy** drop-down list select **Locally redundant storage (LRS)** and save the change. 
+1. In the same blade **Redundancy** drop-down list select **Locally redundant storage (LRS) (1)** and save the change **(2)**. 
 
     ![image](../images/lab4-15.png)
 
@@ -82,7 +82,7 @@ In this task, you will create and configure an Azure Storage account.
     + Change the **Public access level** to **Enabled from all networks**.
     + Be sure to **Save** your changes. 
 
-1. In the **Data management** section, view the **Redundancy** blade. Notice the information about your primary data center locations. Then click **Next**.
+1. In the **Data management** section, view the **Redundancy** blade. Notice the information about your primary data center locations.
 
 1. In the **Data management** section, select **Lifecycle management**, and then select **Add a rule**.
 
@@ -189,11 +189,9 @@ In this task, you will create a blob container and upload a blob into it.
 
 1. Open another browser window by using InPrivate mode and navigate to the URL you copied in the previous step.
 
-    > **Note**: You should be able to view the content of the file by downloading it and opening it with Notepad.
+    > **Note**: This will automatically download the LICENSE file. You can view the content of the file by opening it with Notepad.
 
     > **Note**: This is expected since now your access is authorized based on the newly generated SAS token.
-
-    > **Note**: Save the blob SAS URL. You will need it later in this lab.
 
 ## Task 3: Create and configure an Azure File storage
 In this task, you will create and configure Azure Files shares.
@@ -223,13 +221,13 @@ In this task, you will create and configure Azure Files shares.
 
 1. Open file explorer and in the Documents folder create a text document named **az104-07-file.txt**. The file can remain blank inside.
 
-1. Navigate to **File shares** and select **az104-07-share**.
+1. Navigate to **File shares** and select **az104-07-share**, then click into your **az104-07-folder** folder.
 
 1. Select **Upload**. Browse to your new file **az104-07-file.txt**, and then click **Upload**.
 
     >**Note**: You can view file shares and manage those shares in the Storage Browser. There are currently no restrictions.
 
-1. Click the **az104-07-folder** and verify that **az104-07-file.txt** appears in the list of files.
+1. Verify that **az104-07-file.txt** appears in the list of files in the **az104-07-folder** folder.
     
 ### Restrict network access to the storage account
 
@@ -241,19 +239,15 @@ In this task, you will create and configure Azure Files shares.
 
 1. Wait for the virtual network to deploy, and then select **Go to resource**.
 
-1. In the **Settings** section, select the **Subnets** blade.
-    + Select the **default** subnet.
-    + In the **Service endpoints** section choose **Microsoft.Storage** in the **Services** drop-down.
-    + Do not make any other changes.    
-    + Be sure to **Save** your changes. 
-
 1. Return to your **Storage account** named **strgaz104t07<inject key="DeploymentID" enableCopy="false" />**
 
 1. In the **Security + networking** section, select the **Networking** blade.
 
 1. Under **Firewalls and virtual networks** tab, for **Public network access** select **Enabled from selected virtual networks and IP addresses**. 
 
-1. Select **Add existing virtual network** and select **vnet1** and **default** subnet, select **Add**.
+1. Select **Add existing virtual network** and select **vnet1** and **default** subnet.
+
+1. You now need to enable the **Microsoft.Storage** service endpoint for the **default** subnet. Click **Enable** at the bottom of the blade and wait for the service endpoint to enable. Then, click **Add**. 
 
 1. Be sure to **Save** your changes at the top of the tab before navigating away.
 
@@ -264,16 +258,6 @@ In this task, you will create and configure Azure Files shares.
     >**Note:** You should receive a message *not authorized to perform this operation*, since you are not connecting from the virtual network. It may take a couple of minutes for this to take effect, so refresh the page if you do not receive this message.
 
      ![image](../images/lab4-24.png)
-   
-## Key takeaways
-
-Congratulations on completing the lab. Here are the main takeaways for this lab. 
-
-+ An Azure storage account contains all your Azure Storage data objects: blobs, files, queues, and tables. The storage account provides a unique namespace for your Azure Storage data that is accessible from anywhere in the world over HTTP or HTTPS.
-+ Azure storage provides several redundancy models including Locally redundant storage (LRS), Zone-redundant storage (ZRS), and Geo-redundant storage (GRS). 
-+ Azure blob storage allows you to store large amounts of unstructured data on Microsoft's data storage platform. Blob stands for Binary Large Object, which includes objects such as images and multimedia files.
-+ Azure file Storage provides shared storage for structured data. The data can be organized in folders.
-+ Immutable storage provides the capability to store data in a write once, read many (WORM) state. Immutable storage policies can be time-based or legal-hold.
 
 ## Learn more with self-paced training
 
@@ -285,7 +269,6 @@ In this lab, you have completed:
 - Create and configure a storage account. 
 - Create and configure secure blob storage.
 - Create and configure secure Azure file storage.
-
 
 ## You have successfully completed the lab
 
