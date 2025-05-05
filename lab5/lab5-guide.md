@@ -17,9 +17,7 @@ The terminal opens showing the shell prompt. The shell allows running commands a
 
 ## 1. Check Local Machine Network with `ifconfig`
 
-To check the local node configuration, we can use the following commands:
-
-One of the common tools is `ifconfig`. `ifconfig` is a legacy command and is slowly being replaced by the `ip` command. Nevertheless, it is still widely supported. Users can access important information such as their network interface's IP address (Internet Protocol address), subnet mask, default gateway, and DNS server configurations by running the `ifconfig` command. It is a useful tool for quickly diagnosing network connectivity difficulties, validating network settings, and acquiring critical network information.
+To check the configuration of the local node, one commonly used command is `ifconfig`. `ifconfig` is a legacy command and is slowly being replaced by the `ip` command. Nevertheless, it is still widely supported. Users can access important information such as their network interface's IP address (Internet Protocol address), subnet mask, default gateway, and DNS server configurations by running the `ifconfig` command. It is a useful tool for quickly diagnosing network connectivity difficulties, validating network settings, and acquiring critical network information.
 
 • Run `ifconfig` with no arguments to print essential information about all active network interfaces:
 
@@ -52,10 +50,10 @@ The output of the command shows additional stats about each interface, including
 
 `ifconfig` can also be used to disable or enable an interface.
 
-To disable the `enp0s3` interface, you can use the following command:
+To disable the `eth0` interface, you can use the following command:
 
 ```
-sudo ifconfig enp0s3 down
+sudo ifconfig eth0 down
 ```
 
 Use `ifconfig` to verify that the interface is down.
@@ -63,7 +61,7 @@ Use `ifconfig` to verify that the interface is down.
 To bring an interface up again, you can use the following command:
 
 ```
-sudo ifconfig enp0s3 up
+sudo ifconfig eth0 up
 ```
 Verify it with `ifconfig`.
 
@@ -186,13 +184,7 @@ Another command helpful for checking and debugging connectivity is `traceroute`.
 
 Compared to `ping`, the primary difference between `ping` and `traceroute` is that while `ping` simply tells you if a server is reachable and the time it takes to transmit and receive data, `traceroute` details the precise route info, router by router, as well as the time it took for each hop.
 
-To check the path to facebook.com, use the following command:
-
-```
-traceroute www.facebook.com
-```
-
-Some cloud providers do not support `tracerout` in their platform since it can be used by malicious users to infer network details.
+Some cloud providers do not support `tracerout` in their platform since it can be used by malicious users to infer network details. This lab does not support `traceroute`, but it is a valuable tool that you can use in your personal work.
 
 ## 5. Inspecting the Network Communication
 
@@ -315,84 +307,8 @@ In the output above, we can see the packets involved in establishing a TCP conne
 ## 6. Inspect Network Vulnerability with `nmap`
 
 ### `nmap`
-The `nmap` (Network Mapper) command is a powerful tool used for network exploration and security auditing. It allows you to discover hosts, services, and open ports on a network. In this lab, we will use Docker containers to simulate the two hosts. Files needed for this section are included in Labsetup.zip, which can be fetched by running the following commands.
+The `nmap` (Network Mapper) command is a powerful tool used for network exploration and security auditing. It allows you to discover hosts, services, and open ports on a network.
 
-<!---
-```
-# Download the lab setup files
-$ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/VPN_Tunnel/Labsetup.zip
-
-# Unzip the lab setup files
-$ sudo unzip Labsetup.zip
-```
-
-**Build the Docker Container**. Use Docker Compose to build the container image. This step prepares the environment for running your web server with the required configurations.
-
-```
-# Build the Docker container
-$ docker-compose build
-
-# OR use the alias
-$ dcbuild
-```
-
-**Start the Docker Container**. This command initializes and runs the container based on the configurations specified in the docker-compose.yml file.
-
-```
-# Start the Docker container
-$ docker-compose up
-
-# OR use the alias
-$ dcup
-```
-
-   ![](../images/lab8-111-u.png)
-
-**Stop and Shut Down the Docker Container**. When you’re finished or need to reset the environment, shut down the running container to release resources.
-
-```
-# Stop and shut down the Docker container
-$ docker-compose down
-
-# OR use the alias
-$ dcdown
-```
- 
-All the containers will be running in the background. To run commands on a container, we often need
-to get a shell on that container. We first need to use the `"docker ps"` command to find out the ID of
-the container, and then use `"docker exec"` to start a shell on that container. We have created aliases for
-them in the `.bashrc` file.
-
-**List Running Docker Containers**. Use the alias dockps to view a list of running containers, displaying each container's ID and name in a simplified format.
-
-```
-$ dockps
-```
-
-#### Output
-The output will list all running Docker containers, each with its unique ID and assigned name. An example output might look like this:
-
-![](../images/lab8-222-u.png)
-
-Each line includes the container ID and its corresponding name, along with their assigned IP addresses.
-
-**Access a Specific Container’s Shell**. To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC, use the ID prefix 96 (from the third line in the previous output).
-
-```
-$ docksh 96
-```
-
-#### Output
-You will be logged into a shell session inside the specified container. The prompt will change to show the container ID, indicating that you are now inside the container:
-
-```
-root@9652715c8e0a:/#
-```
-
-#### Note: If a Docker command requires the container ID, you only need to type the first few characters, as long as they are unique among all running containers.
-
-Once inside the containers, you can use the nmap command to perform scans. 
---->
 You need to install `nmap` using the following instructions:
 
 - Update System Package Repository:
@@ -418,13 +334,6 @@ The `nmap` output provides an overview of the publicly accessible services on th
 The `nmap` results show that two ports are open:
 - Port 80 (HTTP): which is used for standard, unsecured web traffic.
 - Port 443 (HTTPS): which is used for secure, encrypted web traffic over HTTPS. 
-    
-<!---
-    - Scanning a Host Inside a Container.
-      From `192.168.60.11`, scan `192.168.60.5` using the command `nmap 192.168.60.5`, we scanned a local host within the containerized environment to identify open ports and services. The scan revealed that the target host was reachable and had port 23 (Telnet) open, a protocol often used for remote access but considered insecure. This demonstrates how Nmap can be used to explore local networks, identify active services, and understand potential vulnerabilities in a controlled environment.
-  
-  ![](images/lab8-333-u.png)
-  --->
 
 ## You have successfully completed this lab.
 
