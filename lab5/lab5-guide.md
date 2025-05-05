@@ -50,10 +50,10 @@ The output of the command shows additional stats about each interface, including
 
 `ifconfig` can also be used to disable or enable an interface.
 
-To disable the `eth0` interface, you can use the following command:
+To disable the `lo` interface, you can use the following command:
 
 ```
-sudo ifconfig eth0 down
+sudo ifconfig lo down
 ```
 
 Use `ifconfig` to verify that the interface is down.
@@ -61,7 +61,7 @@ Use `ifconfig` to verify that the interface is down.
 To bring an interface up again, you can use the following command:
 
 ```
-sudo ifconfig eth0 up
+sudo ifconfig lo up
 ```
 Verify it with `ifconfig`.
 
@@ -204,13 +204,13 @@ PING star-mini.c10r.facebook.com (31.13.66.35) 56(84) bytes of data.
 ```
 In this case, the IP address of `www.facebook.com` is `31.13.66.35`.
 
-You will run `tcpdump` to capture traffic to and from the resolved IP address (31.13.66.35) with the active network interface `eth0`. Use the following command:
+You will run `tcpdump` to capture traffic to and from the resolved IP address (31.13.66.35) with the active network interface `eth0`. Use the following command, replacing the IP address with the one that came up in your output if it isn't 31.13.66.35:
 
 ```
 sudo tcpdump -i eth0 host 31.13.66.35
 ```
 
-While `tcpdump` is running, we need to generate network traffic to `www.facebook.com` by opening it in the browser or using a tool like `curl` using this command:
+While `tcpdump` is running, we need to generate network traffic to `www.facebook.com` by using a tool like `curl`. Open a second terminal windown and run this command:
 
 ```
 curl www.facebook.com
@@ -219,14 +219,6 @@ curl www.facebook.com
 This will send HTTP requests, and `tcpdump` will capture the packets. The output of `tcpdump` will display the captured packets as shown in the following figure:
 
 ![](../images/lab8-7.png)
-
-<!---
-In the output above we can see the packets related to the TCP connection used to send the HTTP Get request. The first four packets are:
-- The first packet is the request to establish a TCP connection. This is indicated by the flag (S). The packet is sent from athe node with the hostname of "lLabvm-1568140.internal.cloudapp.net.41268" to the facebook server "edge-star-mini-shv-01-iad3.facebook.com.http"
-- The second line shows the responce from the facebook server responds (packet flaged (S.)
-- The third message is the third message of the TCP handshake.
-- The forth message has the HTTP GET request.
---->
 
 In the output above, we can see the packets involved in establishing a TCP connection and sending an HTTP GET request. 
 
