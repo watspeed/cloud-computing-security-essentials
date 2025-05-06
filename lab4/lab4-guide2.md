@@ -94,6 +94,10 @@ In this task, you will create and configure an Azure Storage account.
 
       ![image](../images/lab4-18.png)
       
+### You have successfully completed the task
+
+To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Storage Account Creation, Region, and Public Access**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+
 ## Task 2: Create and configure secure blob storage
 
 In this task, you will create a blob container and upload a blob into it.
@@ -193,6 +197,10 @@ In this task, you will create a blob container and upload a blob into it.
 
     > **Note**: This is expected since now your access is authorized based on the newly generated SAS token.
 
+### You have successfully completed the task
+
+To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Create and configure secure blob storage**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+
 ## Task 3: Create and configure an Azure File storage
 In this task, you will create and configure Azure Files shares.
 
@@ -229,6 +237,10 @@ In this task, you will create and configure Azure Files shares.
 
 1. Verify that **az104-07-file.txt** appears in the list of files in the **az104-07-folder** folder.
     
+### You have successfully completed the task
+
+To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Verify File Upload in Azure File Share Folder**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+
 ### Restrict network access to the storage account
 
 1. In the **Search resources, services, and docs (G+/)** box at the top of the portal, search for and select **Virtual networks**.
@@ -259,6 +271,10 @@ In this task, you will create and configure Azure Files shares.
 
      ![image](../images/lab4-24.png)
 
+### You have successfully completed the task
+
+To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **VNet Exists & External Access Blocked**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+
 ## Learn more with self-paced training
 
 + [Optimize your cost with Azure Blob Storage](https://learn.microsoft.com/training/modules/optimize-your-cost-azure-blob-storage/). Learn how to optimize your cost with Azure Blob Storage.
@@ -272,4 +288,4 @@ In this lab, you have completed:
 
 ## You have successfully completed the lab
 
-To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task.
+To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and confirm that all four tasks have validated.
