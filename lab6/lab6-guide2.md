@@ -203,16 +203,15 @@ certificate, and check whether the alternative names are included.
 openssl x509 -in server.crt -text -noout
 ```
 
-### 3.4 Task 4: Deploying Certificate in an Apache-Based HTTPS Website
+### Task 4: Deploying Certificate in an Apache-Based HTTPS Website
 
 In this task, we will see how public-key certificates are used by websites to secure web browsing. We will
 set up an HTTPS website based Apache. The Apache server, which is already installed in our container,
 supports the HTTPS protocol. To create an HTTPS website, we just need to configure the Apache server,
 so it knows where to get the private key and certificates. Inside our container, we have already set up an
-HTTPS site for `bank32.com`. Students can follow this example to set up their own HTTPS site.
-An Apache server can simultaneously host multiple websites. It needs to know the directory where
-a website’s files are stored. This is done via its `VirtualHost` file, located in the `/etc/apache2/sites-available` directory. In our container, we have a file called `bank32apachessl.conf`,
-which contains the following entry:
+HTTPS site for `bank32.com`. An Apache server can simultaneously host multiple websites. It needs to know the directory where
+a website’s files are stored. This is done via its `VirtualHost` file, located in the `/etc/apache2/sites-available` directory.
+In our container, we have a file called `bank32_apache_ssl.conf`, which contains the following entry:
 
 ```
 <VirtualHost *:443>
@@ -220,59 +219,72 @@ DocumentRoot /var/www/bank
 ServerName [http://www.bank32.com](http://www.bank32.com)
 ServerAlias [http://www.bank32A.com](http://www.bank32A.com)
 ServerAlias [http://www.bank32B.com](http://www.bank32B.com)
+ServerAlias [http://www.bank32W.com](http://www.bank32W.com)
 DirectoryIndex index.html
 SSLEngine On
-SSLCertificateFile /certs/bank32.crt ¿
-SSLCertificateKeyFile /certs/bank32.key ¡
+SSLCertificateFile /certs/bank32.crt
+SSLCertificateKeyFile /certs/bank32.key
 </VirtualHost>
 ```
 
-The above example sets up the HTTPS site `https://www.bank32.com`(port `443` is the default
+The above example sets up the HTTPS site `https://www.bank32.com` (port `443` is the default
 HTTPS port). The `ServerName` entry specifies the name of the website, while the `DocumentRoot`
 entry specifies where the files for the website are stored. Using the `ServerAlias` entries, we allow the
-website to have different names. You should also provide two alias entries.
-We also need to tell Apache where the server certificate (Line1) and private key (Line2) are stored. In
+website to have different names.
+We also need to tell Apache where the server certificate (Line 8) and private key (Line 9) are stored. In
 the `Dockerfile`, we have already included the commands to copy the certificate and key to the `/certs` folder of the container.
 In order to make the website work, we need to enable Apache’s `ssl` module and then enable this site.
 They can be done using the following commands, which are already executed when the container is built.
 
 ```
-$ a2enmod ssl // Enable the SSL module
-$ a2ensite bank32_apache_ssl // Enable the sites described in this file
+a2enmod ssl // Enable the SSL module
+a2ensite bank32_apache_ssl // Enable the sites described in this file
 ```
 
-Starting the Apache server. The Apache server is not automatically started in the container, because of
+#### Starting the Apache server
+The Apache server is not automatically started in the container, because of
 the need to type the password to unlock the private key. Let’s go to the container and run the following
-command to start the server (we also list some related commands):
+command to start the server:
 
 ```
-// Start the server
-$ service apache2 start
+# Start the server
+service apache2 start
+```
 
-// Stop the server
-$ service apache2 stop
+There are other useful server commands that you should know, though they aren't needed now:
 
-// Restart a server
-$ service apache2 restart
+```
+# Stop the server
+service apache2 stop
+
+# Restart a server
+service apache2 restart
 ```
 
 When Apache starts, it needs to load the private key for each HTTPS site. Our private key is encrypted,
-so Apache will ask us to type the password for decryption. Inside the container, the password used for `bank32` is `dees`. Once everything is set up properly, we can browse the web site, and all the traffic
+so Apache will ask us to type the password for decryption. Inside the container, the password used for `bank32` is `dees`.
+Once everything is set up properly, we can browse the web site, and all the traffic
 between the browser and the server will be encrypted.
 
-Shared folder between the VM and container. In this task, we need to copy files from the VM to the
+#### Shared folder between the VM and container
+In this task, we need to copy files from the VM to the
 container. To avoid repeatedly recreating containers, we have created a shared folder between the VM and
-container. When you use the Compose file inside the `Labsetup` folder to create containers, the `volumes`
-sub-folder will be mounted to the container. Anything you put inside this folder will be accessible from
+container, `volumes`, which is inside the `Labsetup` folder on the VM.
+When you use the `docker-compose.yml` file inside the `Labsetup` folder to create containers, as you've done in this lab,
+the `volumes` sub-folder will be mounted to the container. Anything you put inside this folder will be accessible from
 inside of the running container.
 
-### Browsing the website. 
-Now, point the browser to your web server (note: you should put `https` at the
-beginning of your URL, instead of using `http`). Most likely, you will see a warning or error message as shown in the figure below. This is because the browser does not recognize your self-signed certificate as a trusted certificate because it is not issued by a well-known Certificate Authority (CA). Browsers only trust certificates from established, pre-configured CAs.
+#### Browsing the website. 
+Now, open Firefox, and point the browser to your web server (note: you need to put `https` at the
+beginning of your URL, instead of using `http`). Most likely, you will see a warning or error message as shown in the figure below.
+This is because the browser does not recognize your self-signed certificate as a trusted certificate because it is not issued by a
+well-known Certificate Authority (CA). Browsers only trust certificates from established, pre-configured CAs.
 
   ![](../images/lab5-88-u.png)
 
-To resolve the issue, you need to manually add your self-signed certificate as a trusted authority in the browser. You have to ensure that you have the `ca.crt` file generated earlier. Then, in Firefox, type `about:preferences#privacy` in the address bar and scroll down to the `Certificates` section and click `View Certificates` as shown in the figure below.
+To resolve the issue, you need to manually add your self-signed certificate as a trusted authority in the browser.
+You have to ensure that you have the `ca.crt` file generated earlier. Then, in Firefox, type `about:preferences#privacy`
+in the address bar and scroll down to the `Certificates` section and click `View Certificates` as shown in the figure below.
 ```
 about:preferences#privacy
 ```
@@ -282,13 +294,14 @@ In the `Authorities` tab, you will see a list of certificates that are already a
 
  ![](../images/lab5-99-u.png)
 
+Navigate to the `\Labsetup\image_www` folder in your VM and select the `modelCA.crt` certificate.
 After choosing the certificate file, please select the following option: “Trust this CA to identify web sites”.
 
   ![](../images/lab5-10-u.png)
 
-You will see that our certificate is now in Firefox’s list of accepted certificates.
+Scrolling through the list, you will see that our `Model CA LTD.` certificate is now in Firefox’s list of accepted certificates.
 
-### 3.5 Task 5: Launching a Man-In-The-Middle Attack
+### Task 5: Launching a Man-In-The-Middle Attack
 
 In this task, we will show how PKI can defeat Man-In-The-Middle (MITM) attacks. Figure 1 depicts how
 MITM attacks work. Assume Alice wants to visit `example.com` via the HTTPS protocol. She needs to get
@@ -300,24 +313,23 @@ attacker can forward the secret to the server using the server’s public key. T
 communication between Alice and server, so the attacker can decrypt the encrypted communication.
 The goal of this task is to help students understand how PKI can defeat such MITM attacks. In the task,
 we will emulate an MITM attack, and see how exactly PKI can defeat it. We will select a target website
-first. In this document, we use `www.example.com` as the target website, but in the task, to make it more
-meaningful, students should pick a popular website, such as a banking site and social network site.
-
-#### Step 1: Setting up the malicious website. 
-In Task 4, we have already set up an HTTPS website. We
-will use the same Apache server to impersonate `www.example.com`.
-To achieve that, we will follow the instruction in Task 4 to add a `VirtualHost` entry to Apache’s SSL
-configuration file: the `ServerName` should be `www.example.com`, but the rest of the configuration can
+first. In this document, we use `www.example.com` as the target website.
 
 ![](../images/i2.png)
 
 Figure 1: A Man-In-The-Middle (MITM) attack
 
+#### Step 1: Setting up the malicious website. 
+In Task 4, we have already set up an HTTPS website. We
+will use the same Apache server to impersonate `www.example.com`.
+To achieve that, follow the instruction in Task 4 to add a `VirtualHost` entry to Apache’s SSL
+configuration file: the `ServerName` should be `www.example.com`, but the rest of the configuration can
 be the same as that used in Task 4. Obviously, in the real world, you won’t be able to get a valid certificate
 for `www.example.com`, so we will use the same certificate that we used for our own server.
+
 Our goal is the following: when a user tries to visit `www.example.com`, we are going to get the user
 to land in our server, which hosts a fake website for `www.example.com`. If this were a social network
-website, The fake site can display a login page similar to the one in the target website. If users cannot
+website, the fake site could display a login page similar to the one in the target website. If users cannot
 tell the difference, they may type their account credentials in the fake webpage, essentially disclosing the
 credentials to the attacker.
 
@@ -336,7 +348,7 @@ our malicious web server.
 
 #### Step 3: Browse the target website. 
 With everything set up, now visit the target real website, and see what
-your browser would say. As shown in the screen shots below, the browser will display a warning.
+your browser would say. As shown in the screen shots below, the browser will display a warning when accessing https://www.example.com.
 
 Figure 2 shows the Apache2 Ubuntu Default Page displayed when accessing http://www.example.com. This indicates that the browser request is being directed to our server, confirming the DNS redirection is working.
 
@@ -351,3 +363,5 @@ Figure 3 shows the browser displaying a "Warning: Potential Security Risk Ahead"
 Figure 3: Security warning in the browser when accessing https://www.example.com
 
 ### You have successfully completed the lab
+
+To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task.
