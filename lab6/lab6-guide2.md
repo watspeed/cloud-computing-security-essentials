@@ -64,20 +64,21 @@ CA. This means that this CA is totally trusted, and its certificate will serve a
 run the following command to generate the self-signed certificate for the CA:
 
 ```
-openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
--keyout ca.key -out ca.crt
+openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -keyout ca.key -out ca.crt
 ```
 
 You will be prompted for a password. **Do not lose this password**, because you will have to type the
 passphrase each time you want to use this CA to sign certificates for others. You will also be asked to fill in
-the subject information, such as the Country Name, Common Name, etc. The output of the command are stored in two files: `ca.key` and `ca.crt`. The file `ca.key` contains the CA’s private key, while `ca.crt`
-contains the public-key certificate.
-You can also specify the subject information and password in the command line, so you will not be
-prompted for any additional information. 
+the subject information, such as the Country Name, Common Name, etc.
+
+The output of the command are stored in two files: `ca.key` and `ca.crt`.
+The file `ca.key` contains the CA’s private key, while `ca.crt` contains the public-key certificate.
+Running `ls` will show you these files in your directory.
 
 ![](../images/lab5-11-u.png)
 
-In the following command, we use  `-subj` to set the subject
+You can also specify the subject information and password in the command line, so you will not be
+prompted for any additional information. In the following command, we use  `-subj` to set the subject
 information and we use `-passout pass:dees` to set the password to `dees`.
 
 ```
@@ -96,41 +97,43 @@ openssl x509 -in ca.crt -text -noout
 openssl rsa -in ca.key -text -noout
 ```
 
-Please run the above commands. From the output, please identify the followings:
+Please run the above commands. From the output, please identify the following:
 
-- What part of the certificate indicates this is a CA’s certificate?
-  By runnung this command `openssl x509 -in ca.crt -text -noout`, we can examine the certificate content. 
+- Which part of the certificate indicates this is a CA’s certificate?
 
-  - The following figure indicates that the certificate is issued for a Certificate Authority (CA) `CA:TRUE`. By locating the Basic Constraints section in the certificate output, it should contain:
+  After running the command `openssl x509 -in ca.crt -text -noout`, we can examine the certificate content. 
+
+  - In the `Basic Constraints` section in the certificate output, it should contain:
   `X509v3 Basic Constraints:
-    CA:TRUE`
+        CA:TRUE`
+    This indicates that the certificate is issued for a Certificate Authority (CA) (`CA:TRUE`). 
 
   ![](../images/lab5-22-u.png)
   
-- What part of the certificate indicates this is a self-signed certificate?
-  - This figure indicates that the certificate is self-signed. By looking at the Issuer and Subject fields. If they are identical, it means the certificate is self-signed.
+- Which part of the certificate indicates this is a self-signed certificate?
+  - Looking at the `Issuer` and `Subject` fields, if they are identical, it means the certificate is self-signed.
 
   ![](../images/lab5-33-u.png)
   
 - In the RSA algorithm, we have a public exponent (e), a private exponent (d), a modulus (n), and two secret
-    numbers (p) and (q) , such that n = p*q. Please identify the values for these elements in your certificate
-    and key files.
-  By running this command `openssl rsa -in ca.key -text -noout`, we can examine the private key content and look at the following elements:
+    numbers (p) and (q) , such that n = p*q. Please identify the values for these elements in your key file.
+
+  After running the command `openssl rsa -in ca.key -text -noout`, we can examine the private key content and look at the following elements:
   
-    - Public Exponent (e): This is usually a small value like `65537`. Look for the line starting with `publicExponent` in        the key output
+    - Public Exponent (e): This is usually a small value like `65537`. Look for the line starting with `publicExponent` in the key output
       ![](../images/lab5-pub.png)
       
     - Private Exponent (d): This is the value of the private key's exponent, found in the line labeled `privateExponent`.
       ![](../images/lab5-priv.png)
       
-    - Modulus (n): This is the large number calculated as `n = p * q`, found in the line labeled modulus.
+    - Modulus (n): This is the large number calculated as `n = p * q`, found in the line labeled `modulus`.
       ![](../images/lab5-mod.png)
       
-    - Prime Numbers (p and q): These are the two large prime numbers used to calculate `n`. Look for the lines labeled prime1       and prime2.
+    - Prime Numbers (p and q): These are the two large prime numbers used to calculate `n`. Look for the lines labeled `prime1` and `prime2`.
       ![](../images/lab5-pre.png)
       
 
-### 3.2 Task 2: Generating a Certificate Request for Your Web Server
+### Task 2: Generating a Certificate Request for Your Web Server
 
 A company called `bank32.com` wants to get a public-
 key certificate from our CA. First it needs to generate a Certificate Signing Request (CSR), which basically
