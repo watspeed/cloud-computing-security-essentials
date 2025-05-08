@@ -37,6 +37,7 @@ Open the `myCA_openssl.cnf` file using your editor of choice (e.g., `nano`, `vim
 First, uncomment the `unique_subject` line in `myCA_openssl.cnf` file
 (by removing the hash sign (#) in front of the `unique_subject` line in the `[CA_default]` settings) to allow
 creation of certifications with the same subject, because it is very likely that we will do that in the lab.
+Then, change the `dir` line to `./` instead of `./demoCA`.
 
 ##### Listing 1: Default CA Settings
 
@@ -52,9 +53,9 @@ new_certs_dir = $dir/newcerts # default place for new certs.
 serial = $dir/serial # The current serial number
 ```
 
-We need to create several sub-directories. Save and exit the `myCA_openssl.cnf` file and return to the `/usr/lib/ssl` directory.
-For the `index.txt` file, simply create an empty file named `index.txt`. For the `serial` file, create the file and put a single number in
-string format (e.g. 1000) in the file.
+We need to create several sub-directories and files. Save and exit the `myCA_openssl.cnf` file and return to the `/usr/lib/ssl` directory.
+Create the `crl` and `newcerts` directories. For the `index.txt` file, simply create an empty file named `index.txt`.
+For the `serial` file, create the file and put a single number in string format (e.g. 1000) in the file.
 
 Now that you have set up the configuration file `myCA_openssl.cnf`, you can create and issue certificates.
 
@@ -135,23 +136,20 @@ Please run the above commands. From the output, please identify the following:
 
 ### Task 2: Generating a Certificate Request for Your Web Server
 
-A company called `bank32.com` wants to get a public-
-key certificate from our CA. First it needs to generate a Certificate Signing Request (CSR), which basically
+A company called `bank32.com` wants to get a public-key certificate from our CA.
+First it needs to generate a Certificate Signing Request (CSR), which basically
 includes the company’s public key and identity information. The CSR will be sent to the CA, who will
 verify the identity information in the request, and then generate a certificate.
-The command to generate a CSR is quite similar to the one we used in creating the self-signed cer-
-tificate for the CA. The only difference is the `-x509` option. Without it, the command generates a re-
-quest; with it, the command generates a self-signed certificate. The following command generate a CSR for `www.bank32.com` you should use your own server name):
+The command to generate a CSR is quite similar to the one we used in creating the self-signed certificate for the CA.
+The only difference is the `-x509` option. Without it, the command generates a request; with it,
+the command generates a self-signed certificate. The following command generate a CSR for `www.bank32.com`:
 
 ```
-openssl req -newkey rsa:2048 -sha256 \
--keyout server.key -out server.csr \
--subj "/CN=www.bank32.com/O=Bank32 Inc./C=US" \
--passout pass:dees
+openssl req -newkey rsa:2048 -sha256 -keyout server.key -out server.csr -subj "/CN=www.bank32.com/O=Bank32 Inc./C=US" -passout pass:dees
 ```
 
-The command will generate a pair of public/private key, and then create a certificate signing request
-from the public key. We can use the following command to look at the decoded content of the CSR and
+The command will generate a pair of public/private keys, and then create a certificate signing request
+from the public key. We can use the following commands to look at the decoded content of the CSR and
 private key files:
 
 ```
@@ -159,45 +157,39 @@ openssl req -in server.csr -text -noout
 openssl rsa -in server.key -text -noout
 ```
 
-Adding Alternative names. Many websites have different URLs. For example, `www.example.com`, `example.com`, `example.net`, and `example.org` are all pointing to the same web server. Due to the hostname matching policy enforced by browsers, the common name in a certificate must match with the
+#### Adding Alternative names
+Many websites have different URLs. For example, `www.example.com`, `example.com`, `example.net`, and `example.org` are all pointing to the same web server. Due to the hostname matching policy enforced by browsers, the common name in a certificate must match with the
 server’s hostname, or browsers will refuse to communicate with the server.
 To allow a certificate to have multiple names, the X.509 specification defines extensions to be attached
 to a certificate. This extension is called Subject Alternative Name (SAN). Using the SAN extension, it’s
 possible to specify several hostnames in the `subjectAltName` field of a certificate.
 To generate a certificate signing request with such a field, we can put all the necessary information
-in a configuration file or at the command line. We will use the command-line approach in this task. We can add the following option to
-the `"openssl req"` command. It should be noted that the `subjectAltName` extension field must also
-include the one from the common name field; otherwise, the common name will not be accepted as a valid
-name.
+in a configuration file or at the command line. We will use the command-line approach in this task. 
+It should be noted that the `subjectAltName` extension field must also include the one from the common name field;
+otherwise, the common name will not be accepted as a valid name.
 
 ```
--addext "subjectAltName = DNS:www.bank32.com, \
-DNS:www.bank32A.com, \
-DNS:www.bank32B.com"
+openssl req -addext "subjectAltName = DNS:www.bank32.com, DNS:www.bank32A.com, DNS:www.bank32B.com"
 ```
 
-Please add two alternative names to your certificate signing request. They will be needed in the tasks
-later.
-
-### 3.3 Task 3: Generating a Certificate for your server
+### Task 3: Generating a Certificate for your server
 
 The CSR file needs to have the CA’s signature to form a certificate. In the real world, the CSR files are
 usually sent to a trusted CA for their signature. In this lab, we will use our own trusted CA to generate
-certificates. The following command turns the certificate signing request `(server.csr)` into an X509 certificate `(server.crt)`, using the CA’s `ca.crt` and `ca.key`:
+certificates. The following command turns the certificate signing request `server.csr` into an X509 certificate `server.crt`, using the CA’s `ca.crt` and `ca.key`:
 
 ```
-openssl ca -config myCA_openssl.cnf -policy policy_anything \
--md sha256 -days 3650 \
--in server.csr -out server.crt -batch \
--cert ca.crt -keyfile ca.key
+openssl ca -config myCA_openssl.cnf -policy policy_anything -md sha256 -days 3650 -in server.csr -out server.crt -batch -cert ca.crt -keyfile ca.key
 ```
 
-In the above command, `myCAopenssl.cnf` is the configuration file we copied from `/usr/lib/ssl/openssl.cnf` (we also made changes to this file in Task 1). We use the `policy_anything` policy defined in the configuration file. This is not the default policy; the default policy has more restriction,
+In the above command, `myCA_openssl.cnf` is the configuration file we copied from `/usr/lib/ssl/openssl.cnf` (we also made changes to this file in Task 1).
+We use the `policy_anything` policy defined in the configuration file. This is not the default policy; the default policy has more restriction,
 requiring some of the subject information in the request to match those in the CA’s certificate. The policy
 used in the command, as indicated by its name, does not enforce any matching rule.
 
-Copy the extension field. For security reasons, the default setting in `openssl.cnf` does not allow the `"openssl ca"` command to copy the extension field from the request to the final certificate. To enable
-that, we can go to our copy of the configuration file, uncomment the following line:
+#### Copy the extension field
+For security reasons, the default setting in `openssl.cnf` does not allow the `openssl ca` command to copy the extension field from the request to the final certificate. To enable
+that, we can go to our copy of the configuration file (`myCA_openssl.cnf`) and uncomment the following line:
 
 ```
 # Extension copying option: use with caution.
