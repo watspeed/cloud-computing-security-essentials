@@ -21,7 +21,7 @@ structure of the command is depicted in the following:
 
 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; Table 1: `iptables` Tables and Chains
 
-![iptables Tables and Chains](images/net-sec-firewall-exploration-iptables-chains.png)
+![iptables Tables and Chains](../images/net-sec-firewall-exploration-iptables-chains.png)
 
 ```
 iptables -t <table> -<operation> <chain>  <rule>  -j <target>
@@ -44,7 +44,7 @@ iptables -t filter -A INPUT <rule> -j DROP
 ```
 The following figure shows all the rules in a table (with line number):
 
-![iptables_rules](images/lab6-1-u.png)
+![iptables_rules](../images/lab6-1-u.png)
 
 **Note.** Docker relies on `iptables` to manage the networks it creates, so it adds many rules to the `nat` table. When we manipulate `iptables` rules, we should be careful not to remove Docker rules. For example, it will be quite dangerous to run the "`iptables -t nat -F`" command, because it removes all the rules in the `nat` table, including many of the Docker rules. That will cause trouble to Docker containers. Doing this for the `filter` table is fine, because Docker does not touch this table.
 
@@ -72,11 +72,11 @@ After running `ping` and `telnet` commands, you can see the following outputs:
 
 **ping**
 
-![iptables_rules](images/lab6-2-ping-u.png)
+![iptables_rules](../images/lab6-2-ping-u.png)
 
 **telnet**
 
-![iptables_rules](images/lab6-2-telnet.png)
+![iptables_rules](../images/lab6-2-telnet.png)
 
 **Cleanup.** Before moving on to the next task, please restore the `filter` table to its original state by running the following commands:
 ```
@@ -137,20 +137,20 @@ From an external host (e.g., 10.9.0.1 or 10.9.0.5):
    ping 10.9.0.11
    ```
    
-   ![rule1](images/lab6-3-r1_1.png)
+   ![rule1](../images/lab6-3-r1_1.png)
 
    - Ping an internal host (192.168.60.5):
    ```
    ping 192.168.60.5
    ```
 
-   ![rule1](images/lab6-3-r1_2.png)
+   ![rule1](../images/lab6-3-r1_2.png)
 
 You can list your active rules on the router using the following command:
 ```
 iptables -L -v -n
 ```
-![rule1](images/lab6-4-u.png)
+![rule1](../images/lab6-4-u.png)
 
 &emsp; When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
@@ -210,7 +210,7 @@ In this section, there are some examples for some outputs:
    telnet 192.168.60.5
    ```
    
-   ![rule1](images/lab6-5-u.png)
+   ![rule1](../images/lab6-5-u.png)
    
 2. From an internal host (e.g., 192.168.60.5):
    - Access external host Telnet server:
@@ -218,14 +218,14 @@ In this section, there are some examples for some outputs:
    telnet 10.9.0.1
    ```
    
-   ![rule1](images/lab6-6-u.png)
+   ![rule1](../images/lab6-6-u.png)
  
 
 You can list your active rules on the router using the following command:
 ```
 iptables -L -v -n
 ```
-![rule1](images/lab6-7-u.png)
+![rule1](../images/lab6-7-u.png)
 
 
 &emsp; When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
@@ -249,7 +249,7 @@ To support stateful firewalls, we need to be able to track connections. This is 
     // On 10.9.0.5, send out ICMP packets
     # ping 192.168.60.5
     ```
-   ![rule1](images/lab6-9-u.png)
+   ![rule1](../images/lab6-9-u.png)
 
 - UDP experiment: Run the following command and check the connection tracking information on the router. Observe the output. How long is the UDP connection state be kept?
     ```
@@ -261,7 +261,7 @@ To support stateful firewalls, we need to be able to track connections. This is 
     <type something, then hit return>
     ```
 
-    ![rule1](images/lab6-10-u.png)
+    ![rule1](../images/lab6-10-u.png)
 
 - TCP experiment: Run the following command and check the connection tracking information on the router. Observe the output. How long is the TCP connection state be kept?
     ```
@@ -273,7 +273,7 @@ To support stateful firewalls, we need to be able to track connections. This is 
     <type something, then hit return>
     ```
     
-   ![rule1](images/lab6-11-u.png)
+   ![rule1](../images/lab6-11-u.png)
   
 ### 4.2 Task 2.B: Setting Up a Stateful Firewall
 
@@ -312,8 +312,8 @@ iptables -A FORWARD -s 10.9.0.5 -j DROP
 
 In these figures, you can see the difference with the second rule (DROP) and without it.
 - This one without the DROP rule.
-   ![rule1](images/lab6-12-u.png)
+   ![rule1](../images/lab6-12-u.png)
 - This one with the DROP rule.
-   ![rule1](images/lab6-13-u.png)
+   ![rule1](../images/lab6-13-u.png)
 
 ### You have successfully completed the lab
