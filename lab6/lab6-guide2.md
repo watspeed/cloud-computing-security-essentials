@@ -1,35 +1,44 @@
 ## 3 Lab Tasks
 
-### 3.1 Task 1: Becoming a Certificate Authority (CA)
+### Task 1: Becoming a Certificate Authority (CA)
 
 A Certificate Authority (CA) is a trusted entity that issues digital certificates. The digital certificate certifies the ownership of a public key by the named subject of the certificate. A number of commercial CAs
 are treated as root CAs; VeriSign is the largest CA at the time of writing. Users who want to get digital
 certificates issued by the commercial CAs need to pay those CAs.
 In this lab, we need to create digital certificates, but we are not going to pay any commercial CA. We
-will become a root CA ourselves, and then use this CA to issue certificate for others (e.g. servers). In this
+will become a root CA ourselves, and then use this CA to issue certificate for others (e.g., servers). In this
 task, we will make ourselves a root CA, and generate a certificate for this CA. Unlike other certificates,
 which are usually signed by another CA, the root CA’s certificates are self-signed. Root CA’s certificates are
 usually pre-loaded into most operating systems, web browsers, and other software that rely on PKI. Root
 CA’s certificates are unconditionally trusted.
 
-The Configuration File `openssl.conf`. In order to use `OpenSSL` to create certificates, you have to
-have a configuration file. The configuration file usually has an extension .cnf. It is used by three `OpenSSL`
-commands: `ca,req` and `x509`. The manual page of openssl.conf can be found from online resources.
-By default, OpenSSL use the configuration file from `/usr/lib/ssl/openssl.cnf`. You can access the `openssl.cnf` file as shown in the figure below. Since we need
-to make changes to this file, we will copy it into our current directory, and instruct `OpenSSL` to use this
-copy instead.
+#### The Configuration File `openssl.cnf`.
+In order to use `OpenSSL` to create certificates, you have to
+have a configuration file. The configuration file usually has an extension `.cnf`. It is used by three `OpenSSL`
+commands: `ca`, `req`, and `x509`. The manual page of `openssl.cnf` can be found from online resources.
+By default, OpenSSL use the configuration file from `/usr/lib/ssl/openssl.cnf`. To view the location of the `openssl.cnf` file:
 
-![](../images/lab5-00-u.png)
+```
+cd /usr/lib/ssl
+ls
+```
+
+Since we need to make changes to this file, we will copy it into our current directory. Later, we will instruct `OpenSSL` to use this
+copy instead of the default `openssl.cnf`.
 
 - Copy the default OpenSSL configuration file using the following command:
 ```
 cp /usr/lib/ssl/openssl.cnf ./myCA_openssl.cnf
 ```
 
-The `[CAdefault]` section of the configuration file shows the default setting that we need to prepare.
-We need to create several sub-directories. Please uncomment the `uniquesubject` line in `myCA_openssl.cnf` file (by removing the sign (#) in the CA_default settings) to allow creation of certifications with the same subject, because it is very likely that we will do that in the lab.
+The `[CA_default]` section of the configuration file shows the default settings that we need to prepare.
+Open the `myCA_openssl.cnf` file using your editor of choice (e.g., `nano`, `vim`).
 
-Listing 1: Default CA setting
+First, uncomment the `unique_subject` line in `myCA_openssl.cnf` file
+(by removing the hash sign (#) in front of the `unique_subject` line in the `[CA_default]` settings) to allow
+creation of certifications with the same subject, because it is very likely that we will do that in the lab.
+
+##### Listing 1: Default CA Settings
 
 ```
 [ CA_default ]
@@ -38,16 +47,19 @@ certs = $dir/certs # Where the issued certs are kept
 crl_dir = $dir/crl # Where the issued crl are kept
 database = $dir/index.txt # database index file.
 # unique_subject = no # Set to ’no’ to allow creation of
-# several certs with same subject.
+                      # several certs with same subject.
 new_certs_dir = $dir/newcerts # default place for new certs.
 serial = $dir/serial # The current serial number
 ```
 
-For the `index.txt file`, simply create an empty file. For the `serial` file, put a single number in
-string format (e.g. 1000) in the file. Once you have set up the configuration file `openssl.cnf`, you can
-create and issue certificates.
+We need to create several sub-directories. Save and exit the `myCA_openssl.cnf` file and return to the `/usr/lib/ssl` directory.
+For the `index.txt` file, simply create an empty file named `index.txt`. For the `serial` file, create the file and put a single number in
+string format (e.g. 1000) in the file.
 
-**Certificate Authority (CA).** As we described before, we need to generate a self-signed certificate for our
+Now that you have set up the configuration file `myCA_openssl.cnf`, you can create and issue certificates.
+
+#### Certificate Authority (CA)
+As we described before, we need to generate a self-signed certificate for our
 CA. This means that this CA is totally trusted, and its certificate will serve as the root certificate. You can
 run the following command to generate the self-signed certificate for the CA:
 
@@ -56,7 +68,7 @@ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
 -keyout ca.key -out ca.crt
 ```
 
-You will be prompted for a password. Do not lose this password, because you will have to type the
+You will be prompted for a password. **Do not lose this password**, because you will have to type the
 passphrase each time you want to use this CA to sign certificates for others. You will also be asked to fill in
 the subject information, such as the Country Name, Common Name, etc. The output of the command are stored in two files: `ca.key` and `ca.crt`. The file `ca.key` contains the CA’s private key, while `ca.crt`
 contains the public-key certificate.
