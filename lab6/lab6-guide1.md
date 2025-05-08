@@ -1,22 +1,19 @@
-# Lab 5: Public-Key Infrastructure (PKI) Lab
+# Lab 6: Public-Key Infrastructure (PKI) Lab
 
-```
-Copyright © 2018 by Wenliang Du.
-This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-License. If you remix, transform, or build upon the material, this copyright notice must be left intact, or
-reproduced in a way that is reasonable to the medium in which the work is being re-published.
-```
+>Copyright © 2018 by Wenliang Du.
+>This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. If you remix, transform, or build upon the material, this copyright notice must be left intact, or reproduced in a way that is reasonable to the medium in which the work is being re-published.
+
 ## 1 Overview
 
-Public key cryptography is the foundation of today’s secure communication, but it is subject to man-in-the-
-middle attacks when one side of communication sends its public key to the other side. The fundamental
+Public key cryptography is the foundation of today’s secure communication, but it is subject to man-in-the-middle
+attacks when one side of communication sends its public key to the other side. The fundamental
 problem is that there is no easy way to verify the ownership of a public key, i.e., given a public key and its
 claimed owner information, how do we ensure that the public key is indeed owned by the claimed owner?
 The Public Key Infrastructure (PKI) is a practical solution to this problem.
 The learning objective of this lab is for students to gain the first-hand experience on PKI. By doing the
 tasks in this lab, students should be able to gain a better understanding of how PKI works, how PKI is used
-to protect the Web, and how Man-in-the-middle attacks can be defeated by PKI. Moreover, students will be
-able to understand the root of the trust in the public-key infrastructure, and what problems will arise if the
+to protect the web, and how man-in-the-middle attacks can be defeated by PKI. Moreover, students will be
+able to understand the root of the trust in the public key infrastructure, and what problems will arise if the
 root trust is broken. This lab covers the following topics:
 
 - Public-key encryption, Public-Key Infrastructure (PKI)
@@ -28,14 +25,14 @@ root trust is broken. This lab covers the following topics:
 ## 2 Lab Environment
 
 ### Step 1: Download and Extract the Lab Files
-Download Labsetup.zip from the lab’s website and unzip it. This will provide you with the necessary files, including the docker-compose.yml for setting up the lab environment.
+Download Labsetup.zip from the lab’s website and unzip it. This will provide you with the necessary files, including the `docker-compose.yml` for setting up the lab environment.
 
 ```
 # Download the lab setup files
-$ sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/Crypto_PKI/Labsetup.zip
+sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/Crypto_PKI/Labsetup.zip
 
 # Unzip the lab setup files
-$ sudo unzip Labsetup.zip
+sudo unzip Labsetup.zip
 ```
 
 ### Step 2: Navigate to the Lab Setup Directory
@@ -43,7 +40,7 @@ Move into the extracted Labsetup folder, where you will find the docker-compose.
 
 ```
 # Enter the Labsetup folder
-$ cd Labsetup
+cd Labsetup
 ```
 
 ### Step 3: Build the Docker Container
@@ -51,10 +48,11 @@ Use Docker Compose to build the container image. This step prepares the environm
 
 ```
 # Build the Docker container
-$ docker-compose build
-
+docker-compose build
+```
+```
 # OR use the alias
-$ dcbuild
+dcbuild
 ```
 
 ### Step 4: Start the Docker Container
@@ -62,10 +60,11 @@ This command initializes and runs the container based on the configurations spec
 
 ```
 # Start the Docker container
-$ docker-compose up
-
+docker-compose up
+```
+```
 # OR use the alias
-$ dcup
+dcup
 ```
 
 ### Step 5: Stop and Shut Down the Docker Container
@@ -73,10 +72,11 @@ When you’re finished or need to reset the environment, shut down the running c
 
 ```
 # Stop and shut down the Docker container
-$ docker-compose down
-
+docker-compose down
+```
+```
 # OR use the alias
-$ dcdown
+dcdown
 ```
  
 All the containers will be running in the background. To run commands on a container, we often need
@@ -88,7 +88,7 @@ them in the `.bashrc` file.
 Use the alias dockps to view a list of running containers, displaying each container's ID and name in a simplified format.
 
 ```
-$ dockps
+dockps
 ```
 
 #### Output
@@ -105,7 +105,7 @@ Each line includes the container ID and its corresponding name (in this case, ho
 To open a shell inside a specific container, use the alias docksh followed by the first few characters of the container's ID. For example, to access hostC-10.9.0.7, use the ID prefix 96 (from the third line in the previous output).
 
 ```
-$ docksh 96
+docksh 96
 ```
 
 #### Output
