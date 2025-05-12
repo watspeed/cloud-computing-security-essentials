@@ -327,6 +327,13 @@ The `nmap` results show that two ports are open:
 - Port 80 (HTTP): which is used for standard, unsecured web traffic.
 - Port 443 (HTTPS): which is used for secure, encrypted web traffic over HTTPS. 
 
+## Terminate the Shell Session
+
+Before validating the lab, you must exit the shell session. Run the following command to exit:
+```
+exit
+```
+
 ## You have successfully completed this lab.
 
 To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task.
