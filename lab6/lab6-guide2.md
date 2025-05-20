@@ -301,6 +301,9 @@ After choosing the certificate file, please select the following option: “Trus
 
 Scrolling through the list, you will see that our `Model CA LTD.` certificate is now in Firefox’s list of accepted certificates.
 
+#### You have successfully completed the task
+To confirm your completion and receive credit for the tasks that you have completed so far, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Creating a Root Certificate Authority (CA)**, **Generating a Certificate**, and **Deploying Certificate**. If your any of your task validations failed, read the validation information for more details, and try the steps in the task again.
+
 ### Task 5: Launching a Man-In-The-Middle Attack
 
 In this task, we will show how PKI can defeat Man-In-The-Middle (MITM) attacks. Figure 1 depicts how
@@ -362,6 +365,9 @@ Figure 3 shows the browser displaying a "Warning: Potential Security Risk Ahead"
 
 Figure 3: Security warning in the browser when accessing https://www.example.com
 
-### You have successfully completed the lab
+### You have successfully completed the task
 
-To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task.
+To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for the **Man-In-The-Middle Attack** task. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+
+### You have successfully completed the lab
+To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and confirm that all four tasks have validated.
