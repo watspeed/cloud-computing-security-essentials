@@ -301,6 +301,8 @@ After choosing the certificate file, please select the following option: “Trus
 
 Scrolling through the list, you will see that our `Model CA LTD.` certificate is now in Firefox’s list of accepted certificates.
 
+To confirm that your certificate is working as intended, in your browser you can navigate to `https://www.bank32.com` and confirm that the site loads without a warning.
+
 #### You have successfully completed the task
 To confirm your completion and receive credit for the tasks that you have completed so far, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Creating a Root Certificate Authority (CA)**, **Generating a Certificate**, and **Deploying Certificate**. If your any of your task validations failed, read the validation information for more details, and try the steps in the task again.
 
@@ -343,7 +345,7 @@ Another way is to attack DNS, so when the victim’s machine tries to find out t
 server, it gets the IP address of our web server. In this task, we simulate the attack-DNS approach. Instead of
 launching an actual DNS cache poisoning attack, we simply modify the victim’s machine’s `/etc/hosts`
 file to emulate the result of a DNS cache positing attack by mapping the hostname `www.example.com` to
-our malicious web server.
+our malicious web server. We do this by adding the following line at the bottom of the file:
 
 ```
 10.9.0.80 [http://www.example.com](http://www.example.com)
@@ -359,7 +361,7 @@ Figure 2 shows the Apache2 Ubuntu Default Page displayed when accessing http://w
 
 Figure 2: Apache2 Default Page showing successful DNS redirection to the attacker’s server for http://www.example.com.
 
-Figure 3 shows the browser displaying a "Warning: Potential Security Risk Ahead" message when accessing https://www.example.com. The warning occurs because the certificate presented by our server does not match the www.example.com, that prevent MITM attacks.
+Figure 3 shows the browser displaying a "Warning: Potential Security Risk Ahead" message when accessing https://www.example.com. The warning occurs because the certificate presented by our server isn't valid for www.example.com. This mismatch alerts the browser and helps block potential MITM attacks.
 
 ![](../images/lab5_3.png)
 
