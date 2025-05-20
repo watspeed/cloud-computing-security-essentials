@@ -169,7 +169,7 @@ It should be noted that the `subjectAltName` extension field must also include t
 otherwise, the common name will not be accepted as a valid name.
 
 ```
-openssl req -addext "subjectAltName = DNS:www.bank32.com, DNS:www.bank32A.com, DNS:www.bank32B.com"
+openssl req -newkey rsa:2048 -sha256 -keyout server.key -out server.csr -subj "/CN=www.bank32.com/O=Bank32 Inc./C=US" -addext "subjectAltName = DNS:www.bank32.com, DNS:www.bank32A.com, DNS:www.bank32B.com" -passout pass:dees
 ```
 
 ### Task 3: Generating a Certificate for your server
@@ -267,7 +267,7 @@ Once everything is set up properly, we can browse the web site, and all the traf
 between the browser and the server will be encrypted.
 
 #### Shared folder between the VM and container
-In this task, we need to copy files from the VM to the
+Note that sometimes when working in a VM, we need to copy files from the VM to the
 container. To avoid repeatedly recreating containers, we have created a shared folder between the VM and
 container, `volumes`, which is inside the `Labsetup` folder on the VM.
 When you use the `docker-compose.yml` file inside the `Labsetup` folder to create containers, as you've done in this lab,
