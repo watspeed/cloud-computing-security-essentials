@@ -67,7 +67,7 @@ iptables -P INPUT  DROP
 
 Now, try to access the router from `10.9.0.5`.
 
-(1) Can you ping the router? Recall that the router is '10.9.0.11'. 
+(1) Can you ping the router? Recall that the router is `10.9.0.11`. 
 
 (2) Can you telnet into the router? (a telnet server is running on all the containers; an account called `seed` was created on them with a password `dees`)
 
