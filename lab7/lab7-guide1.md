@@ -16,7 +16,7 @@ Download `Labsetup.zip` from the lab’s website and unzip it. This will provide
 
 ```
 # Download the lab setup files
-sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/Crypto_PKI/Labsetup.zip
+sudo wget https://seedsecuritylabs.org/Labs_20.04/Files/Firewall/Labsetup.zip
 
 # Unzip the lab setup files
 sudo unzip Labsetup.zip
