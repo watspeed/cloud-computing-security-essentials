@@ -157,7 +157,7 @@ iptables -L -v -n
 
 When you are done with this task, please remember to clean the table or restart the container before moving on to the next task.
 
-Restore the `filter` table :
+Restore the `filter` table:
 ```
 iptables -F
 iptables -P OUTPUT ACCEPT
@@ -350,4 +350,4 @@ exit
 
 To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task. If your task validation failed, read the validation information for more details, and try the steps in the task again.
 
-**Important:** for the validation to succeed, you must have run the commands exactly as written in the lab, with all syntax and punctuation matching. 
+**Important:** for this validation to succeed, you must have run the commands exactly as written in the lab, with all syntax and punctuation matching. 
