@@ -4,7 +4,7 @@
 >This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. If you remix, transform, or build upon the material, this copyright notice must be left intact, or reproduced in a way that is reasonable to the medium in which the work is being re-published.
 
 ## 1. Overview
-Linux has a built-in firewall is called `iptables`. In this lab, students will be given a simple network topology, and are asked to use `iptables` to set up firewall rules to protect the network. Students will also be exposed to several other interesting applications of `iptables`. This lab covers the following topics:
+Linux has a built-in firewall called `iptables`. In this lab, students will be given a simple network topology, and are asked to use `iptables` to set up firewall rules to protect the network. Students will also be exposed to several other interesting applications of `iptables`. This lab covers the following topics:
 
 - Using `iptables` to set up firewall rules
 - Various applications of `iptables`
@@ -23,7 +23,15 @@ sudo unzip Labsetup.zip
 ```
 
 ### Step 2: Navigate to the Lab Setup Directory
-Move into the extracted Labsetup folder, where you will find the `docker-compose.yml` file and other necessary files. Figure 1 shows the lab setup.
+Move into the extracted Labsetup folder, where you will find the `docker-compose.yml` file and other necessary files.
+
+```
+# Enter the Labsetup folder
+cd Labsetup
+ls
+```
+
+Figure 1 shows the lab setup.
 
 ![Lab setup](../images/net-sec-firewall-exploration-lab-setup.png)
 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Figure 1: Firewall Lab setup.
@@ -43,11 +51,6 @@ The network topology can be described as the following:
      Host 2: 192.168.60.6.
      Host 3: 192.168.60.7.
 
-```
-# Enter the Labsetup folder
-cd Labsetup
-ls
-```
 
 ### Step 3: Build the Docker Container
 Use Docker Compose to build the container image. This step prepares the environment for running your web server with the required configurations.
@@ -93,7 +96,7 @@ the container, and then use `docker exec` to start a shell on that container. We
 them in the `.bashrc` file.
 
 #### 1. List Running Docker Containers
-Use the alias dockps to view a list of running containers, displaying each container's ID and name in a simplified format.
+Use the alias `dockps` to view a list of running containers, displaying each container's ID and name in a simplified format.
 
 ```
 dockps
