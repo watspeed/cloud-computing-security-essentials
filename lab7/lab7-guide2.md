@@ -1,27 +1,26 @@
 ## 3. Task 1: Experimenting with Stateless Firewall Rules
 
-`Linux` already has a built-in firewall is called `iptables`. Technically, the kernel part implementation of the firewall is called `Xtables`, while `iptables` is a user-space program to configure the firewall. However,`iptables` is often used to refer to both the kernel-part implementation
+Linux already has a built-in firewall called `iptables`. Technically, the kernel part implementation of the firewall is called `Xtables`, while `iptables` is a user-space program to configure the firewall. However,`iptables` is often used to refer to both the kernel-part implementation
 and the user-space program.
 
-### 3.1 Background of iptables
+### 3.1 Background of `iptables`
 
-In this task, we will use `iptables` to set up a firewall. The` iptables` firewall is designed not only to filter packets, but also to make changes to packets. To help manage these firewall rules for different purposes, `iptables` organizes all rules using a hierarchical structure: table, chain, and rules. There are several tables, each specifying the main purpose of the rules as shown in Table 1. For example, rules for
-packet filtering should be placed in the `filter` table, while rules for making changes to packets should be placed in the `nat` or `mangle` tables.
-<Br>
-&emsp; Each table contains several chains, each of which corresponds to a `netfilter` hook. Basically, each chain indicates where its rules are enforced. For example, rules on the `FORWARD` chain are enforced at the `NF_INET_FORWARD` hook, and rules on the `INPUT` chain are enforced at the `NF_INET_LOCALIN` hook.
-<Br>
-&emsp; Each chain contains a set of firewall rules that will be enforced. When we set up firewalls, we add rules to these chains. For example, if we would like to block all incoming `telnet` traffic, we would add a rule to the `INPUT` chain of the `filter` table. If we would like to redirect all incoming `telnet` traffic to a different port on a different host, basically doing port forwarding, we can add a rule to the `INPUT` chain of the `mangle` table, as we need to make changes to packets.
-
-### 3.2 Using iptables
-
-To add rules to the chains in each table, we use the `iptables` command, which is a quite powerful command. Students can find the manual of `iptables` by typing "`man iptables`" or easily find many tutorials from online. What makes `iptables` complicated is the many command-line arguments that we need to provide when using the command. However, if we understand the structure of these command-line arguments, we will find out that the command is not that complicated.
-<Br>
-&emsp; In a typical `iptables` command, we add a rule to or remove a rule from one of the chains in one of the tables, so we need to specify a table name (the default is `filter`), a chain name, and an operation on the chain. After that, we specify the rule, which is basically a pattern that will be matched with each of the packets passing through. If there is a match, an action will be performed on this packet. The general
-structure of the command is depicted in the following:
+In this task, we will use `iptables` to set up a firewall. The` iptables` firewall is designed not only to filter packets, but also to make changes to packets. To help manage these firewall rules for different purposes, `iptables` organizes all rules using a hierarchical structure: table, chain, and rules. There are several tables, each specifying the main purpose of the rules as shown in Table 1 below. For example, rules for packet filtering should be placed in the `filter` table, while rules for making changes to packets should be placed in the `nat` or `mangle` tables.
 
 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; Table 1: `iptables` Tables and Chains
 
 ![iptables Tables and Chains](../images/net-sec-firewall-exploration-iptables-chains.png)
+
+Each table contains several chains, each of which corresponds to a `netfilter` hook. Basically, each chain indicates where its rules are enforced. For example, rules on the `FORWARD` chain are enforced at the `NF_INET_FORWARD` hook, and rules on the `INPUT` chain are enforced at the `NF_INET_LOCALIN` hook.
+
+Each chain contains a set of firewall rules that will be enforced. When we set up firewalls, we add rules to these chains. For example, if we would like to block all incoming `telnet` traffic, we would add a rule to the `INPUT` chain of the `filter` table. If we would like to redirect all incoming `telnet` traffic to a different port on a different host, basically doing port forwarding, we can add a rule to the `INPUT` chain of the `mangle` table, as we need to make changes to packets.
+
+### 3.2 Using `iptables`
+
+To add rules to the chains in each table, we use the `iptables` command, which is a quite powerful command. Students can find the manual of `iptables` by typing `man iptables` or easily find many tutorials from online. What makes `iptables` complicated is the many command-line arguments that we need to provide when using the command. However, if we understand the structure of these command-line arguments, we will find out that the command is not that complicated.
+
+In a typical `iptables` command, we add a rule to or remove a rule from one of the chains in one of the tables, so we need to specify a table name (the default is `filter`), a chain name, and an operation on the chain. After that, we specify the rule, which is basically a pattern that will be matched with each of the packets passing through. If there is a match, an action will be performed on this packet. The general
+structure of the command is depicted in the following:
 
 ```
 iptables -t <table> -<operation> <chain>  <rule>  -j <target>
@@ -42,22 +41,22 @@ iptables -t filter -D INPUT 2
 // Drop all the incoming packets that satisfy the <rule>
 iptables -t filter -A INPUT <rule> -j DROP
 ```
-The following figure shows all the rules in a table (with line number):
 
+The command `iptables -t filter -L -n --line-numbers` shows all the rules in a table (with line number):
 ![iptables_rules](../images/lab6-1-u.png)
 
 **Note.** Docker relies on `iptables` to manage the networks it creates, so it adds many rules to the `nat` table. When we manipulate `iptables` rules, we should be careful not to remove Docker rules. For example, it will be quite dangerous to run the "`iptables -t nat -F`" command, because it removes all the rules in the `nat` table, including many of the Docker rules. That will cause trouble to Docker containers. Doing this for the `filter` table is fine, because Docker does not touch this table.
 
 ### 3.3 Task 1.A: Protecting the Router
 
-In this task, we will set up rules to prevent outside machines from accessing the router machine, except ping. This set of iptables rules focuses on protecting the router by controlling ICMP traffic and setting default DROP policies for both the INPUT and OUTPUT chains. Please execute the following `iptables` command on the router container, and then try to access it from `10.9.0.5`. 
+In this task, we will set up rules to prevent outside machines from accessing the router machine, except ping. This set of iptables rules focuses on protecting the router by controlling ICMP traffic and setting default DROP policies for both the INPUT and OUTPUT chains. Please execute the following `iptables` commands on the router container, and then try to access it from `10.9.0.5`. 
 
-<pre>
+```
 iptables -A INPUT  -p icmp --icmp-type echo-request -j ACCEPT
 iptables -A OUTPUT -p icmp --icmp-type echo-reply   -j ACCEPT
 iptables -P OUTPUT DROP <b>  <---- Set default rule for OUTPUT </b>
 iptables -P INPUT  DROP <b>  <---- Set default rule for INPUT </b>
-</pre>
+```
 
 - The first rule, `iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT`, allows incoming ICMP echo-request packets, which are commonly used for ping requests. This ensures that the router will respond to pings, enabling basic network diagnostics.
 - The second rule, `iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT`, permits outgoing ICMP echo-reply packets, which are the responses sent when the router replies to an incoming ping. These two rules allow the router to participate in ping operations, both receiving and sending replies.
