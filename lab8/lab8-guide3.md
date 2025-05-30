@@ -1,4 +1,4 @@
-## 4 Task 3: Send the IP Packet to VPN Server Through a Tunnel
+## Task 3: Send the IP Packet to VPN Server Through a Tunnel
 
 In this task, we will put the IP packet received from the TUN interface into the UDP payload field of a new
 IP packet, and send it to another computer. Namely, we place the original packet inside a new packet. This
@@ -6,15 +6,18 @@ is called IP tunneling. The tunnel implementation is just standard client/server
 on top of TCP or UDP. In this task, we will use UDP. Namely, we put an IP packet inside the payload field
 of a UDP packet.
 
-The server program **tunserver.py**. We will runtunserver.pyprogram on VPN Server. This
-program is just a standard UDP server program. It listens to port 9090 and print out whatever is received.
+### The server program `tunserver.py`
+We will run the `tunserver.py` program on the VPN Server. This
+program is just a standard UDP server program. It listens to port 9090 and prints out whatever is received.
 The program assumes that the data in the UDP payload field is an IP packet, so it casts the payload to a
-ScapyIPobject, and print out the source and destination IP address of the enclosed IP packet.
+ScapyIPobject, and prints out the source and destination IP address of the enclosed IP packet.
 
-`Listing 2:tunserver.py`
+Create the file `tunserver.py` in the `volumes` folder, then make the program executable. 
+
+Listing 2: `tunserver.py`
 
 ```
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from scapy.all import *
 
@@ -31,10 +34,11 @@ while True:
     print(" Inside: {} --> {}".format(pkt.src, pkt.dst))
 ```
 
-Implement the client program **tunclient.py**. First, we need to modify the TUN program `tun.py`.
+### Implement the client program `tunclient.py`
+First, we need to modify the TUN program `tun.py`.
 Let’s rename it, and call it `tunclient.py`. Sending data to another computer using UDP can be done
 using the standard socket programming.
-Replace the while loop in the program with the following: The `SERVERIP` and `SERVERPORT` should be replaced with the actual IP address and port number of the server program running on VPN
+Replace the while loop in the program with the following: The `SERVER_IP` and `SERVER_PORT` should be replaced with the actual IP address and port number of the server program running on VPN
 Server.
 
 ```
@@ -49,7 +53,7 @@ while True:
         sock.sendto(packet, (SERVER_IP, SERVER_PORT))
 ```
 
-The update `tunclient.py` code should be something like this:
+The updated `tunclient.py` code should be something like this:
 ```
 #!/usr/bin/env python3
 
@@ -96,18 +100,19 @@ while True:
 ```
 
 
-**Testing.** To test whether the tunnel works, first run the `tunserver.py` program on the VPN Server. The server will listen on port `9090` for incoming UDP packets. Next, run the `tunclient.py` program on HostU. The client will configure the TUN interface (tun0), capture packets sent to it, encapsulate them in UDP packets, and send them to the VPN Server. 
-To test the tunnel, ping any IP address in the `192.168.53.0/24` network (e.g., 192.168.53.1) from HostU. On the VPN Server, the `tunserver.py` program will print logs showing the source and destination IPs of the received packets. For example, you may see output like this: 10.9.0.11:12345 --> 0.0.0.0:9090 and Inside: 192.168.53.99 --> 192.168.53.1. This confirms that the ICMP echo request packet was successfully forwarded from the TUN interface on HostU through the tunnel to the VPN Server, where it was received and processed.
+### Testing
+To test whether the tunnel works, first run the `tunserver.py` program on the VPN Server. The server will listen on port `9090` for incoming UDP packets. Next, run the `tunclient.py` program on HostU. The client will configure the TUN interface (`[last_name]0`), capture packets sent to it, encapsulate them in UDP packets, and send them to the VPN Server. 
+To test the tunnel, ping any IP address in the `192.168.53.0/24` network (e.g., `192.168.53.1`) from HostU. On the VPN Server, the `tunserver.py` program will print logs showing the source and destination IPs of the received packets. For example, you may see output like this: `10.9.0.11:12345 --> 0.0.0.0:9090` and `Inside: 192.168.53.99 --> 192.168.53.1`. This confirms that the ICMP echo request packet was successfully forwarded from the TUN interface on HostU through the tunnel to the VPN Server, where it was received and processed.
 
-To achieve the ultimate goal of accessing hosts inside the private network 192.168.60.0/24 using the tunnel, you need to route packets destined for this network to the TUN interface on HostU. This can be done by adding a route with the following command on HostU: 
+To achieve the ultimate goal of accessing hosts inside the private network `192.168.60.0/24` using the tunnel, you need to route packets destined for this network to the TUN interface on HostU. This can be done by adding a route with the following command on HostU (replacing `tun0` with your interface name): 
 ```
 ip route add 192.168.60.0/24 dev tun0
 ```
-Once this route is added, any packets sent to the 192.168.60.0/24 network will be captured by tunclient.py, encapsulated in UDP, and sent to the VPN Server. When you ping a host in the 192.168.60.0/24 network, such as HostV (192.168.60.5), the VPN Server will log the packet details, confirming that the ICMP echo request packet was received through the tunnel.
+Once this route is added, any packets sent to the `192.168.60.0/24` network will be captured by `tunclient.py`, encapsulated in UDP, and sent to the VPN Server. When you ping a host in the `192.168.60.0/24` network, such as HostV (`192.168.60.5`), the VPN Server will log the packet details, confirming that the ICMP echo request packet was received through the tunnel.
 
-If the ICMP packets do not appear on the VPN Server, ensure the TUN interface on HostU is up `ip link set dev tun0 up` and verify the route configuration. The output on the VPN Server will show packets received through the tunnel, demonstrating that the tunnel is correctly forwarding packets for the private network.
+If the ICMP packets do not appear on the VPN Server, ensure the TUN interface on HostU is up by running `ip link set dev tun0 up` and verify the route configuration. The output on the VPN Server will show packets received through the tunnel, demonstrating that the tunnel is correctly forwarding packets for the private network.
 
-  ![tun](images/lab7-14.png)
+  ![tun](../images/lab7-14.png)
 
 <!---
 Run the `tunserver.py` program on VPN Server, and then run `tunclient.py` on HostU. To test whether the tunnel works or not,ping any IP address belonging to the 192.168.53.0/
@@ -127,7 +132,7 @@ Please demonstrate that when you ping an IP address in the192.168.60.0/
 network, the ICMP packets are received by `tunserver.py` through the tunnel.
 --->
 
-## 5 Task 4: Set Up the VPN Server
+## Task 4: Set Up the VPN Server
 
 This task involves modifying the VPN Server program `tunserver.py` so that it can process packets received from the tunnel, feed them to the kernel through a TUN interface, and forward them to their final destination. You will also enable IP forwarding to ensure the server can act as a gateway. This needs to be done through a TUN interface, just like what we did in Task 2. 
 
@@ -204,13 +209,14 @@ while True:
     print(f"Packet written to TUN interface: {ifname}")
 ```
 
-Then, On the VPN Server, execute:
+Then, on the VPN Server, execute:
 
 ```
 python3 tunserver.py
 ```
 
-**Testing.** The testing process confirmed that the setup was successful. ICMP echo request packets from HostU were sent through the tunnel to the VPN Server and eventually reached HostV. Using `tcpdump` on HostV, it was verified that the ICMP packets arrived as expected, demonstrating that the VPN Server successfully forwarded the packets from the TUN interface to their destination. Although HostV responded to the ICMP echo requests with echo replies, the replies did not return to HostU because reverse tunneling has not yet been configured. This behavior aligns with the current setup, where the focus is on ensuring that packets can traverse the tunnel and reach their intended destination. The following `tcpdump` output shows that the ICMP packets were correctly delivered to HostV.
+### Testing
+The testing process confirmed that the setup was successful. ICMP echo request packets from HostU were sent through the tunnel to the VPN Server and eventually reached HostV. Using `tcpdump` on HostV, it was verified that the ICMP packets arrived as expected, demonstrating that the VPN Server successfully forwarded the packets from the TUN interface to their destination. Although HostV responded to the ICMP echo requests with echo replies, the replies did not return to HostU because reverse tunneling has not yet been configured. This behaviour aligns with the current setup, where the focus is on ensuring that packets can traverse the tunnel and reach their intended destination. The following `tcpdump` output shows that the ICMP packets were correctly delivered to HostV.
 
 <!---
 If everything is set up properly, we can ping HostV from HostU. The ICMP echo request
@@ -220,10 +226,10 @@ have not set up everything yet. Therefore, for this task, it is sufficient to sh
 that the ICMP packets have arrived at HostV.
 --->
 
-  ![tun](images/lab7-15.png)
+  ![tun](../images/lab7-15.png)
 
 
-## 6 Task 5: Handling Traffic in Both Directions
+## Task 5: Handling Traffic in Both Directions
 
 After getting to this point, one direction of your tunnel is complete, i.e., we can send packets from HostU
 to HostV via the tunnel. If we look at the Wireshark trace on HostV, we can see that HostV has sent out
@@ -240,11 +246,11 @@ waste CPU time when there is no data.
 
 The read-based blocking mechanism works well for one interface. If a process is waiting on multiple
 interfaces, it cannot block on just one of the interfaces. It has to block on all of them altogether. Linux has a
-system call called select(), which allows a program to monitor multiple file descriptors simultaneously.
-To useselect(), we need to store all the file descriptors to be monitored in a set, and then we give the
-set to the select() system call, which will block the process until data are available on one of the file
+system call called `select()`, which allows a program to monitor multiple file descriptors simultaneously.
+To use `select()`, we need to store all the file descriptors to be monitored in a set, and then we give the
+set to the `select()` system call, which will block the process until data are available on one of the file
 descriptors in the set. We can check which file descriptor has received data. In the following Python code
-snippet, we use select() to monitor aTUNand a socket file descriptor.
+snippet, we use `select()` to monitor a TUN and a socket file descriptor.
 
 ```
 # We assume that sock and tun file descriptors have already been created.
@@ -399,6 +405,13 @@ The code is incomplete; students are expected to complete it.
 VPN tunnel (un-encrypted) is now complete. You can use `wireshark` about `ping` and
 `telnet` commands.
 
- ![tun](images/lab7-16.png)
+ ![tun](../images/lab7-16.png)
 
 ### You have successfully completed the lab
+
+Before validating your lab, make sure that you have exited all of your containers:
+```
+exit
+```
+
+To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task. If your task validation failed, read the validation information for more details, and try the steps in the task again.
