@@ -57,18 +57,18 @@ cd Labsetup
 ls
 ```
 
-We have created aliases for our commonly used commands related to Docker and Compose in the .bashrc file.
+We have created aliases for our commonly used commands related to Docker and Compose in the `.bashrc` file.
 
 #### Build the Docker Container
 Use Docker Compose to build the container image. This step prepares the environment for running your web server with the required configurations.
 
 ```
 # Build the Docker container
-docker-compose up -d
+docker-compose build
 ```
 ```
 # OR use the alias
-dcup -d
+dcbuild
 ```
 
 #### Start the Docker Container
