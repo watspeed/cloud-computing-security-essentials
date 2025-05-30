@@ -3,7 +3,7 @@
 >Copyright © 2020 by Wenliang Du.
 >This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. If you remix, transform, or build upon the material, this copyright notice must be left intact, or reproduced in a way that is reasonable to the medium in which the work is being re-published.
 
-## 1 Overview
+## Overview
 
 A Virtual Private Network (VPN) is a private network built on top of a public network, usually the Internet.
 Computers inside a VPN can communicate securely, just like if they were on a real private network that is
@@ -21,7 +21,7 @@ helping students understand the tunneling technology, so the tunnel in this lab 
 - IP tunneling
 - Routing
 
-## 2 Task 1: Network Setup
+## Task 1: Network Setup
 
 We will create a VPN tunnel between a computer (client) and a gateway, allowing the computer to securely
 access a private network via the gateway. We need at least three machines: VPN client (also serving as
