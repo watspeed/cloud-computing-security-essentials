@@ -304,7 +304,7 @@ Scrolling through the list, you will see that our `Model CA LTD.` certificate is
 To confirm that your certificate is working as intended, in your browser you can navigate to `https://www.bank32.com` and confirm that the site loads without a warning.
 
 #### You have successfully completed the task
-To confirm your completion and receive credit for the tasks that you have completed so far, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Creating a Root Certificate Authority (CA)**, **Generating a Certificate**, and **Deploying Certificate**. If your any of your task validations failed, read the validation information for more details, and try the steps in the task again.
+To confirm your completion for the tasks that you have completed so far, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Creating a Root Certificate Authority (CA)**, **Generating a Certificate**, and **Deploying Certificate**. If your any of your task validations failed, read the validation information for more details, and try the steps in the task again.
 
 ### Task 5: Launching a Man-In-The-Middle Attack
 
@@ -369,7 +369,7 @@ Figure 3: Security warning in the browser when accessing https://www.example.com
 
 ### You have successfully completed the task
 
-To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for the **Man-In-The-Middle Attack** task. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for the **Man-In-The-Middle Attack** task. If your task validation failed, read the validation information for more details, and try the steps in the task again.
 
 ### You have successfully completed the lab
-To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and confirm that all four tasks have validated.
+To confirm your completion for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and confirm that all four tasks have validated. To receive credit for the lab, submit a screenshot of your **Lab Validation** tab to the course dropbox.
