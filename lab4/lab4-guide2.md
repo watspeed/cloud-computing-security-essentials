@@ -96,7 +96,7 @@ In this task, you will create and configure an Azure Storage account.
       
 ### You have successfully completed the task
 
-To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Storage Account Creation, Region, and Public Access**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Storage Account Creation, Region, and Public Access**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
 
 ## Task 2: Create and configure secure blob storage
 
@@ -199,7 +199,7 @@ In this task, you will create a blob container and upload a blob into it.
 
 ### You have successfully completed the task
 
-To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Create and configure secure blob storage**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Create and configure secure blob storage**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
 
 ## Task 3: Create and configure an Azure File storage
 In this task, you will create and configure Azure Files shares.
@@ -239,7 +239,7 @@ In this task, you will create and configure Azure Files shares.
     
 ### You have successfully completed the task
 
-To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Verify File Upload in Azure File Share Folder**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Verify File Upload in Azure File Share Folder**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
 
 ### Restrict network access to the storage account
 
@@ -273,7 +273,7 @@ To confirm your completion and receive credit for this task, go to the **Lab Val
 
 ### You have successfully completed the task
 
-To confirm your completion and receive credit for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **VNet Exists & External Access Blocked**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **VNet Exists & External Access Blocked**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
 
 ## Learn more with self-paced training
 
@@ -288,4 +288,4 @@ In this lab, you have completed:
 
 ## You have successfully completed the lab
 
-To confirm your completion and receive credit for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and confirm that all four tasks have validated.
+To confirm your completion for this lab, go to the **Lab Validation** tab in the navigation bar at the top of this guide and confirm that all four tasks have validated. To receive credit for the lab, submit a screenshot of your **Lab Validation** tab to the course dropbox.
