@@ -52,12 +52,12 @@ The command `iptables -t filter -L -n --line-numbers` shows all the rules in a t
 In this task, we will set up rules to prevent outside machines from accessing the router machine, except `ping`. This set of `iptables` rules focuses on protecting the router by controlling ICMP traffic and setting default DROP policies for both the INPUT and OUTPUT chains. Please execute the following `iptables` commands **on the router container**. 
 
 ```
-iptables -A INPUT  -p icmp --icmp-type echo-request -j ACCEPT
-iptables -A OUTPUT -p icmp --icmp-type echo-reply   -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
 #Set default rule for OUTPUT
 iptables -P OUTPUT DROP
 #Set default rule for INPUT
-iptables -P INPUT  DROP
+iptables -P INPUT DROP
 ```
 
 - The first rule, `iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT`, allows incoming ICMP echo-request packets, which are commonly used for ping requests. This ensures that the router will respond to pings, enabling basic network diagnostics.
@@ -187,7 +187,7 @@ To configure the required rules for this task, you need to run the following com
 
 **Rule 1:** Allow external access to Telnet server on 192.168.60.5
 ```
-   iptables -A FORWARD -i eth0 -o eth1 -p tcp --dport 23 -d 192.168.60.5 -j ACCEPT
+iptables -A FORWARD -i eth0 -o eth1 -p tcp --dport 23 -d 192.168.60.5 -j ACCEPT
 ```
 This command allows external hosts to connect to the Telnet server on `192.168.60.5` (port `23`) through the router.
 
