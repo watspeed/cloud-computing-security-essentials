@@ -350,4 +350,4 @@ exit
 
 To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task. If your task validation failed, read the validation information for more details, and try the steps in the task again. To receive credit for the lab, submit a screenshot of your **Lab Validation** tab to the course dropbox.
 
-**Important:** for this validation to succeed, you must have run the commands exactly as written in the lab, with all syntax and punctuation matching. 
+**Important:** for this validation to succeed, you must have run the commands exactly as written in the lab, with all syntax and punctuation matching. Note that some rules depend on previous ones being set, especially in Task 1, so ensure that you carefully follow the sequence of rules when running the commands.
