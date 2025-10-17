@@ -46,7 +46,17 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
    ![Launch Azure Portal](../images/sc900-image(1).png)
 
  
-3. You'll see the **Sign into Microsoft Azure** tab. Here, enter your username from the AzureCreds file:
+3. You'll see the **Sign into Microsoft Azure** tab. Here, enter the following email/username:
+   **Email/Username:**
+   <inject key="AzureAdUserEmail"></inject>
+   <inject key="AzureAdUserPassword"></inject>
+   <inject key="DeploymentID"></inject>
+   <inject key="ApplicationID"></inject>
+   <inject key="DisplayName"></inject>
+   <inject key="SecretKey"></inject>
+   <inject key="SubscriptionID"></inject>
+   <inject key="TenantID"></inject>
+   <inject key="TenantDomainName"></inject>
   
    ![Enter Your Username](../images/sc900-image-1.png)
  
