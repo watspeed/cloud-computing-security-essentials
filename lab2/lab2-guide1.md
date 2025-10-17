@@ -44,21 +44,21 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
 
 2. You'll see the **Sign into Microsoft Azure** tab. Here, enter the following email/username:
    
-   * **Email/Username:** <inject key="AzureAdUserEmail"></inject> **(1)**
+   * **Email/Username:** <inject key="AzureAdUserEmail"></inject>
   
    ![Enter Your Username](../images/sc900-image-1.png)
  
 3. Next, enter the following temporary access pass:
    
-   * **Temporary Access Pass:** <inject key="AzureAdUserPassword"></inject> **(1)**
+   * **Temporary Access Pass:** <inject key="AzureAdUserPassword"></inject>
   
-   ![Enter Your Password](../images/sc900-image-2.png)
+   ![Enter Your TAP](../images/sc900-image-2.png)
  
 4. If you get a pop-up stating **Action Required** click on **Ask Later**.
 
 5. If prompted to stay signed in, you can click "No."
  
-6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Cancel" to skip the tour.
+6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **Cancel** to skip the tour.
 7. You're now logged in, and are all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
 
 ## Completing the lab
