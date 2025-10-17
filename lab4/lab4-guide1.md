@@ -33,27 +33,28 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
  
 ## Let's Get Started with Azure Portal
  
-1. On your virtual machine, open the AzureCreds text file as shown below:
-   ![Open AzureCreds document](../images/creds.png)
+1. On your virtual machine, click on the Azure Portal icon as shown below:
+ 
+   ![Launch Azure Portal](../images/sc900-image(1).png)
+
+2. You'll see the **Sign into Microsoft Azure** tab. Here, enter the following email/username:
    
-3. On your virtual machine, click on the Azure Portal icon as shown below:
- 
-    ![Launch Azure Portal](../images/lab4-7.png)
- 
-4. You'll see the **Sign into Microsoft Azure** tab. Here, enter your username from the AzureCreds file:
+   * **Email/Username:** <inject key="AzureAdUserEmail"></inject>
   
    ![Enter Your Username](../images/sc900-image-1.png)
  
-4. Next, enter your password from the AzureCreds file:
+3. Next, enter the following temporary access pass:
+   
+   * **Temporary Access Pass:** <inject key="AzureAdUserPassword"></inject>
   
-   ![Enter Your Password](../images/sc900-image-2.png)
-
-1. If you get a pop-up stating **Action Required** click on **Ask Later**.
-
-6. If prompted to stay signed in, you can click "No."
+   ![Enter Your TAP](../images/sc900-image-2.png)
  
-7. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Cancel" to skip the tour.
-8. You're now logged in, and are all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
+4. If you get a pop-up stating **Action Required** click on **Ask Later**.
+
+5. If prompted to stay signed in, you can click "No."
+ 
+6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **Cancel** to skip the tour.
+7. You're now logged in, and are all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
 
 ## Completing the lab
 
