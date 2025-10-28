@@ -957,7 +957,7 @@ exit
 ```
 
 #### Additional Resources
-Here is a <a href="https://github.com/watspeed/cloud-computing-security-essentials/blob/main/Linux_cheat_sheet.pdf" download="download" target="_blank">cheat sheet</a> of common Linux commands. 
+Here is a <a href="https://github.com/watspeed/cloud-computing-security-essentials/blob/main/Linux_cheat_sheet.pdf" download target="_blank">cheat sheet</a> of common Linux commands. 
 
 
 ### You successfully completed the Lab
