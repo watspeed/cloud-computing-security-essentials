@@ -16,7 +16,7 @@ Estimated timing: 30 minutes
 
 ## Task 1: Create the virtual machine
 
-In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine. 
+In this task, we will create a **Ubuntu Server 24.04 LTS** virtual machine. 
 
 1. On the Azure Portal page, in the Search resources, services, and docs (G+/) box at the top of the portal, enter **Virtual machines (1)**, and then select **Virtual machines (2)** under services.
 
@@ -34,7 +34,7 @@ In this task, we will create a **Ubuntu Server 20.04 LTS** virtual machine.
     | Resource group | **myRGVM-<inject key="DeploymentID" enableCopy="false"/>** (2) |
     | Virtual machine name | **myVm** (3)|
     | Location | **(Canada) Canada Central** (4)|
-    | Image | **Ubuntu Server 20.04 LTS - x64 Gen2** (5)|
+    | Image | **Ubuntu Server 24.04 LTS - x64 Gen2** (5)|
     | Size | **Standard_D2s_v3** (6)|
     | Authentication type| **Password** |
     | Administrator account username | **azureuser** (7)|
