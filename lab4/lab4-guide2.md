@@ -46,12 +46,13 @@ In this task, you will create and configure an Azure Storage account.
     | Resource group | the name of an **existing** resource group **az104-07-rg1** |
     | Storage account name | **strgaz104t07<inject key="DeploymentID" enableCopy="false" />** |
     | Region | **<inject key="Region" enableCopy="false"/>**  |
+    | Primary Service | **Azure Blob Storage or Azure Data Lake Storage** |
     | Performance | **Standard** |
     | Redundancy | **Geo-redundant storage (GRS)** |
 
 1. Click **Next**, and on the **Advanced** tab of the **Create a storage account** blade, review the available options, accept the defaults, and click **Next**.
 
-1. On the **Networking** tab of the **Create a storage account** blade, review the available options and select **Disable public access and use private access** under network access. Click **Next**.
+1. On the **Networking** tab of the **Create a storage account** blade, review the available options and select **Disable** for **Public network access**. Click **Next**.
 
 1. On the **Data protection** tab of the **Create a storage account** blade, review the available options and accept the defaults. Click **Review + Create** and wait for the validation process to complete. Then click on **Create**.
 
@@ -79,7 +80,7 @@ In this task, you will create and configure an Azure Storage account.
 
 1. In the **Security + Networking** section, select **Networking**. Notice public network access is disabled.
 
-    + Change the **Public access level** to **Enabled from all networks**.
+    + Click **Manage** for the **Public network access**, then switch it to **Enable** and select **Enabled from all networks** for the **Public network access scope**.
     + Be sure to **Save** your changes. 
 
 1. In the **Data management** section, view the **Redundancy** blade. Notice the information about your primary data center locations.
@@ -106,7 +107,7 @@ In this task, you will create a blob container and upload a blob into it.
 
 1. On the Storage account blade, in the **Data storage** section, click **Containers**.
 
-1. Click **+ Container** and create a container with the following settings:
+1. Click **+ Add container** and create a container with the following settings:
 
     | Setting | Value |
     | --- | --- |
@@ -115,7 +116,7 @@ In this task, you will create a blob container and upload a blob into it.
 
 1. Click **Create**.
 
-1. On your container, scroll to the ellipsis (...) on the far right, select **Access Policy**.
+1. On your container, scroll to the ellipsis (...) on the far right, select **Access policy**.
 
      ![image](../images/lab4-19.png)
 
@@ -204,16 +205,16 @@ To confirm your completion for this task, go to the **Lab Validation** tab in th
 ## Task 3: Create and configure an Azure File storage
 In this task, you will create and configure Azure Files shares.
 
-1. In the Azure portal, navigate back to the blade of the storage account you created in the task 2 of this lab and, in the **Data storage** section, click **File shares**.
+1. In the Azure portal, navigate back to the blade of the storage account you created in the task 2 of this lab and, in the **Data storage** section, click **Classic file shares**.
 
-1. Click **+ File share** and create a file share with the following settings.
+1. Click **+ Classic file share** and create a file share with the following settings.
 
     | Setting | Value |
     | --- | --- |
     | Name | **az104-07-share** |
     | Tier | **Transaction optimized** |
 
-1. Click **Next: Backup**, then in the Backup tab, uncheck **Enable backup** option and then click on **Review + Create**, then **Create**.
+1. Click **Next: Backup**, then click on **Review + Create**, then **Create**.
 
 1. Click the newly created file share and note the information available on the **az104-07-share** blade.
 
@@ -221,7 +222,7 @@ In this task, you will create and configure Azure Files shares.
 
 1. Return to your storage account and select **Storage browser**. The Azure Storage Browser is a portal tool that lets you quickly view all the storage services under your account.
 
-1. Select **File shares** and verify your **az104-07-share** directory is present.
+1. Select **Classic file shares** and verify your **az104-07-share** directory is present.
 
 1. Select your **az104-07-share** directory and notice you can **+ Add directory**. This lets you create a folder structure. Provide name **az104-07-folder** and click on **OK**
 
@@ -255,13 +256,15 @@ To confirm your completion for this task, go to the **Lab Validation** tab in th
 
 1. In the **Security + networking** section, select the **Networking** blade.
 
-1. Under **Firewalls and virtual networks** tab, for **Public network access** select **Enabled from selected virtual networks and IP addresses**. 
+1. Under **Public access** tab, for **Public network access** select **Enabled from selected networks**. 
 
-1. Select **Add existing virtual network** and select **vnet1** and **default** subnet.
+1. Select **+ Add a virtual network** dropdown and select **Add existing virtual network**
+
+1. Select **vnet1** and **default** subnet.
 
 1. You now need to enable the **Microsoft.Storage** service endpoint for the **default** subnet. Click **Enable** at the bottom of the blade and wait for the service endpoint to enable. Then, click **Add**. 
 
-1. Be sure to **Save** your changes at the top of the tab before navigating away.
+1. Be sure to **Save** your changes efore navigating away.
 
     >**Note:** The storage account should now only be accessed from the virtual network you just created. 
 
