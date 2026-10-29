@@ -244,7 +244,7 @@ To confirm your completion for this task, go to the **Lab Validation** tab in th
 
 ### Restrict network access to the storage account
 
-1. In the **Search resources, services, and docs (G+/)** box at the top of the portal, search for and select **Virtual networks**.
+1. In the **Search resources, services, and docs (G+/)** box at the top of the portal, search for and select **Virtual network**.
 
 1. Select **+ Create**. Select your resource group **az104-07-rg1** and give the virtual network a **name**, `vnet1`.
 
@@ -256,15 +256,15 @@ To confirm your completion for this task, go to the **Lab Validation** tab in th
 
 1. In the **Security + networking** section, select the **Networking** blade.
 
-1. Under **Public access** tab, for **Public network access** select **Enabled from selected networks**. 
+1. Under **Public access** tab, for **Public network access** select **Manage**. 
 
-1. Select **+ Add a virtual network** dropdown and select **Add existing virtual network**
+1. Select **Enabled from selected networks**, then click **+ Add a virtual network** dropdown and select **Add existing virtual network**
 
 1. Select **vnet1** and **default** subnet.
 
 1. You now need to enable the **Microsoft.Storage** service endpoint for the **default** subnet. Click **Enable** at the bottom of the blade and wait for the service endpoint to enable. Then, click **Add**. 
 
-1. Be sure to **Save** your changes efore navigating away.
+1. Be sure to **Save** your changes before navigating away.
 
     >**Note:** The storage account should now only be accessed from the virtual network you just created. 
 
