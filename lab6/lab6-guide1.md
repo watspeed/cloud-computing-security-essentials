@@ -120,6 +120,13 @@ root@9652715c8e0a:/#
 
 #### Note: If a Docker command requires the container ID, you only need to type the first few characters, as long as they are unique among all running containers.
 
+#### Exit the Container
+Before moving on to your lab, exit the container by typing `exit`
+
+```
+exit
+```
+You should now be back in `Labsetup`
 
 ### DNS setup.
 In this document, we will use `bank32.com` as the server name for the HTTPS web server throughout the lab.
