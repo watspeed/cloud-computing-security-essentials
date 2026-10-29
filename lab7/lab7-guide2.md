@@ -316,14 +316,9 @@ iptables -P FORWARD DROP
 
 ## 5. Task 3: Limiting Network Traffic
 
-In addition to blocking packets, we can also limit the number of packets that can pass through the firewall. This can be done using the `limit` module of `iptables`. In this task, we will use this module to limit how many packets from `10.9.0.5` are allowed to get into the internal network. You can use `iptables -m limit -h` to see the manual. 
+In addition to blocking packets, we can also limit the number of packets that can pass through the firewall. This can be done using the `limit` module of `iptables`. In this task, we will use this module to limit how many packets from `10.9.0.5` are allowed to get into the internal network. Run `iptables -m limit -h` to see the manual. 
 ```
-$ iptables -m limit -h
-limit match options:
---limit avg          max average match rate: default 3/hour
-                     [Packets per second unless followed by
-                     /sec /minute /hour /day postfixes]
---limit-burst number number to match in a burst, default 5
+iptables -m limit -h
 ```
 Please run the following command on the router, and then ping `192.168.60.5` from `10.9.0.5`.
 ```
@@ -343,10 +338,7 @@ In these figures, you can see the difference with the second rule (DROP) and wit
    ![rule1](../images/lab6-13-u.png)
 
 ### You have successfully completed the lab
-Before validating your lab, make sure that you have exited all of your containers:
-```
-exit
-```
+Before validating your lab, make sure that you have exited all of your containers using `exit`, and close all terminals except the one with `router` running.
 
 To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for each task. If your task validation failed, read the validation information for more details, and try the steps in the task again. To receive credit for the lab, submit a screenshot of your **Lab Validation** tab to the course dropbox.
 
