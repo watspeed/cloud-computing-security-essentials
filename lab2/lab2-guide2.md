@@ -22,7 +22,7 @@ In this task, we will create a **Ubuntu Server 24.04 LTS** virtual machine.
 
    ![](../images/lab1-image1.png) 
 
-1. On the **Virtual machines** blade, click **+ Create (1)** and choose **Azure virtual machine (2)**.
+1. On the **Virtual machines** blade, click **+ Create (1)** and choose **Virtual machine (2)**.
 
     ![](../images/lab1-image2.png) 
 
@@ -88,26 +88,22 @@ In this task, we will connect to our new virtual machine using RDP.
 
     ![Screenshot of the virtual machine properties with the Connect button highlighted.](../images/goto.png)
    
-1. On the virtual machine **Overview** blade, click the **Connect** button and choose the **Connect** from the dropdown.
+1. On the virtual machine **Overview** blade, click the **Connect** button and choose **Connect** from the dropdown.
 
     ![Screenshot of the virtual machine properties with the Connect button highlighted.](../images/conrdp.png)
 
     >**Note:**: The following directions tell you how to connect to your VM from a Windows computer.
 
-1. Within the **Connect** page, click on **Select** under **Native SSH**.
+1. Within the **Connect** page, on the **Native SSH** tab, copy the **SSH command**.
 
-   ![Screenshot of the virtual machine properties with the Connect button highlighted. ](../images/SSH-U.png)
-
-1. Check the terms and conditions and click on **Configure**. Then, copy the SSH command.
-
-    ![Screenshot of the virtual machine properties with the Connect button highlighted. ](../images/SSH-U1.png)
+   ![Screenshot of the virtual machine Native SSH tab with the SSH command text highlighted. ](../images/SSH-U.png)
 
 1. Next, open a command prompt terminal application and paste the copied SSH command from previous step.
 
      ![](../images/lab2-cmd-prompt-1-u.png)
    
  
-1. Enter yes when asked if you want to continue connecting, then provide the password(Pa$$w0rd1234) when prompted and click Enter.
+1. Enter yes when asked if you want to continue connecting, then provide the password(Pa$$w0rd1234) when prompted and click Enter. Note that the password will not show in the terminal as you type it.
 
     ![](../images/lab2-cmd-prompt-2.png)
 
