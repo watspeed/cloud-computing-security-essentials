@@ -72,7 +72,7 @@ new_certs_dir = $dir/newcerts # default place for new certs.
 serial = $dir/serial # The current serial number
 ```
 
-We need to create several sub-directories and files. Save and exit the `myCA_openssl.cnf` file and return to the `/usr/lib/ssl` directory.
+We need to create several sub-directories and files. Save and exit the `myCA_openssl.cnf` file.
 Create the `crl` and `newcerts` directories. For the `index.txt` file, simply create an empty file named `index.txt`.
 For the `serial` file, create the file and put a single number in string format (e.g. 1000) in the file.
 
@@ -103,10 +103,7 @@ prompted for any additional information. In the following command, we use  `-sub
 information and we use `-passout pass:dees` to set the password to `dees`.
 
 ```
-sudo openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
--keyout ca.key -out ca.crt \
--subj "/CN=www.modelCA.com/O=Model CA LTD./C=US" \
--passout pass:dees
+sudo openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -keyout ca.key -out ca.crt -subj "/CN=www.modelCA.com/O=Model CA LTD./C=US" -passout pass:dees
 ```
 
 We can use the following commands to look at the decoded content of the X509 certificate and the
@@ -155,7 +152,7 @@ Please run the above commands. From the output, please identify the following:
       
 ### You have successfully completed the task
 
-To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Creating a Root Certificatie Authority (CA)**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
+To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Creating a Root Certificate Authority (CA)**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
 
 ### Task 2: Generating a Certificate Request for Your Web Server
 
@@ -240,7 +237,7 @@ In our container, we have a file called `bank32_apache_ssl.conf`, which contains
 
 ```
 <VirtualHost *:443>
-DocumentRoot /var/www/bank
+DocumentRoot /var/www/bank32
 ServerName [http://www.bank32.com](http://www.bank32.com)
 ServerAlias [http://www.bank32A.com](http://www.bank32A.com)
 ServerAlias [http://www.bank32B.com](http://www.bank32B.com)
@@ -268,7 +265,7 @@ a2ensite bank32_apache_ssl // Enable the sites described in this file
 
 #### Starting the Apache server
 The Apache server is not automatically started in the container, because of
-the need to type the password to unlock the private key. Let’s go to the container and run the following
+the need to type the password to unlock the private key. Navigate to the container and run the following
 command to start the server:
 
 ```
@@ -329,7 +326,7 @@ Scrolling through the list, you will see that our `Model CA LTD.` certificate is
 To confirm that your certificate is working as intended, in your browser you can navigate to `https://www.bank32.com` and confirm that the site loads without a warning.
 
 #### You have successfully completed the task
-To confirm your completion for the tasks that you have completed so far, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Creating a Root Certificate Authority (CA)**, **Generating a Certificate**, and **Deploying Certificate**. If your any of your task validations failed, read the validation information for more details, and try the steps in the task again.
+To confirm your completion for the tasks that you have completed so far, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Generating a Certificate** and **Deploying Certificate**. If any of your task validations failed, read the validation information for more details, and try the steps in the task again.
 
 ### Task 5: Launching a Man-In-The-Middle Attack
 
