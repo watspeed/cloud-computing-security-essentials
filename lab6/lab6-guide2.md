@@ -23,12 +23,17 @@ cd /usr/lib/ssl
 ls
 ```
 
-Since we need to make changes to this file, we will copy it into our current directory. Later, we will instruct `OpenSSL` to use this
+Since we need to make changes to this file, we will copy it into our `Labsetup` directory. Later, we will instruct `OpenSSL` to use this
 copy instead of the default `openssl.cnf`.
+
+- Return to the `Labsetup` folder
+```
+cd ~/Labsetup
+```
 
 - Copy the default OpenSSL configuration file using the following command:
 ```
-cp /usr/lib/ssl/openssl.cnf ./myCA_openssl.cnf
+sudo cp /usr/lib/ssl/openssl.cnf ./myCA_openssl.cnf
 ```
 
 The `[CA_default]` section of the configuration file shows the default settings that we need to prepare.
@@ -53,6 +58,20 @@ new_certs_dir = $dir/newcerts # default place for new certs.
 serial = $dir/serial # The current serial number
 ```
 
+##### Listing 2: Edited CA Settings
+
+```
+[ CA_default ]
+dir = ./ # Where everything is kept
+certs = $dir/certs # Where the issued certs are kept
+crl_dir = $dir/crl # Where the issued crl are kept
+database = $dir/index.txt # database index file.
+sudounique_subject = no # Set to ’no’ to allow creation of
+                      # several certs with same subject.
+new_certs_dir = $dir/newcerts # default place for new certs.
+serial = $dir/serial # The current serial number
+```
+
 We need to create several sub-directories and files. Save and exit the `myCA_openssl.cnf` file and return to the `/usr/lib/ssl` directory.
 Create the `crl` and `newcerts` directories. For the `index.txt` file, simply create an empty file named `index.txt`.
 For the `serial` file, create the file and put a single number in string format (e.g. 1000) in the file.
@@ -65,10 +84,11 @@ CA. This means that this CA is totally trusted, and its certificate will serve a
 run the following command to generate the self-signed certificate for the CA:
 
 ```
-openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -keyout ca.key -out ca.crt
+cd ~/Labsetup
+sudo openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -keyout ca.key -out ca.crt
 ```
 
-You will be prompted for a password. **Do not lose this password**, because you will have to type the
+You will be prompted for a password. Enter a password of your choosing, but **do not lose this password**, because you will have to type the
 passphrase each time you want to use this CA to sign certificates for others. You will also be asked to fill in
 the subject information, such as the Country Name, Common Name, etc.
 
@@ -83,7 +103,7 @@ prompted for any additional information. In the following command, we use  `-sub
 information and we use `-passout pass:dees` to set the password to `dees`.
 
 ```
-openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
+sudo openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
 -keyout ca.key -out ca.crt \
 -subj "/CN=www.modelCA.com/O=Model CA LTD./C=US" \
 -passout pass:dees
@@ -94,8 +114,8 @@ RSA key (`-text` means decoding the content into plain text; `-noout` means not 
 version):
 
 ```
-openssl x509 -in ca.crt -text -noout
-openssl rsa -in ca.key -text -noout
+sudo openssl x509 -in ca.crt -text -noout
+sudo openssl rsa -in ca.key -text -noout
 ```
 
 Please run the above commands. From the output, please identify the following:
@@ -133,6 +153,9 @@ Please run the above commands. From the output, please identify the following:
     - Prime Numbers (p and q): These are the two large prime numbers used to calculate `n`. Look for the lines labeled `prime1` and `prime2`.
       ![](../images/lab5-pre.png)
       
+### You have successfully completed the task
+
+To confirm your completion for this task, go to the **Lab Validation** tab in the navigation bar at the top of this guide and click the **Validate** button for **Creating a Root Certificatie Authority (CA)**. If your task validation failed, read the validation information for more details, and try the steps in the task again.
 
 ### Task 2: Generating a Certificate Request for Your Web Server
 
@@ -142,10 +165,11 @@ includes the company’s public key and identity information. The CSR will be se
 verify the identity information in the request, and then generate a certificate.
 The command to generate a CSR is quite similar to the one we used in creating the self-signed certificate for the CA.
 The only difference is the `-x509` option. Without it, the command generates a request; with it,
-the command generates a self-signed certificate. The following command generate a CSR for `www.bank32.com`:
+the command generates a self-signed certificate. The following command generate a CSR for `www.bank32.com`. Notice that this command sets the password
+as `dees`:
 
 ```
-openssl req -newkey rsa:2048 -sha256 -keyout server.key -out server.csr -subj "/CN=www.bank32.com/O=Bank32 Inc./C=US" -passout pass:dees
+sudo openssl req -newkey rsa:2048 -sha256 -keyout server.key -out server.csr -subj "/CN=www.bank32.com/O=Bank32 Inc./C=US" -passout pass:dees
 ```
 
 The command will generate a pair of public/private keys, and then create a certificate signing request
@@ -153,8 +177,8 @@ from the public key. We can use the following commands to look at the decoded co
 private key files:
 
 ```
-openssl req -in server.csr -text -noout
-openssl rsa -in server.key -text -noout
+sudo openssl req -in server.csr -text -noout
+sudo openssl rsa -in server.key -text -noout
 ```
 
 #### Adding Alternative names
@@ -169,32 +193,33 @@ It should be noted that the `subjectAltName` extension field must also include t
 otherwise, the common name will not be accepted as a valid name.
 
 ```
-openssl req -newkey rsa:2048 -sha256 -keyout server.key -out server.csr -subj "/CN=www.bank32.com/O=Bank32 Inc./C=US" -addext "subjectAltName = DNS:www.bank32.com, DNS:www.bank32A.com, DNS:www.bank32B.com" -passout pass:dees
+sudo openssl req -newkey rsa:2048 -sha256 -keyout server.key -out server.csr -subj "/CN=www.bank32.com/O=Bank32 Inc./C=US" -addext "subjectAltName = DNS:www.bank32.com, DNS:www.bank32A.com, DNS:www.bank32B.com" -passout pass:dees
 ```
 
 ### Task 3: Generating a Certificate for your server
 
 The CSR file needs to have the CA’s signature to form a certificate. In the real world, the CSR files are
 usually sent to a trusted CA for their signature. In this lab, we will use our own trusted CA to generate
-certificates. The following command turns the certificate signing request `server.csr` into an X509 certificate `server.crt`, using the CA’s `ca.crt` and `ca.key`:
+certificates.
+
+For security reasons, the default setting in `openssl.cnf` does not allow the `openssl ca` command to copy the extension field from the request 
+to the final certificate. To enable that, we can go to our copy of the configuration file (`myCA_openssl.cnf`) and uncomment the following line:
 
 ```
-openssl ca -config myCA_openssl.cnf -policy policy_anything -md sha256 -days 3650 -in server.csr -out server.crt -batch -cert ca.crt -keyfile ca.key
+# Extension copying option: use with caution.
+copy_extensions = copy
+```
+
+The following command turns the certificate signing request `server.csr` into an X509 certificate `server.crt`, using the CA’s `ca.crt` and `ca.key`:
+
+```
+sudo openssl ca -config myCA_openssl.cnf -policy policy_anything -md sha256 -days 3650 -in server.csr -out server.crt -batch -cert ca.crt -keyfile ca.key
 ```
 
 In the above command, `myCA_openssl.cnf` is the configuration file we copied from `/usr/lib/ssl/openssl.cnf` (we also made changes to this file in Task 1).
 We use the `policy_anything` policy defined in the configuration file. This is not the default policy; the default policy has more restriction,
 requiring some of the subject information in the request to match those in the CA’s certificate. The policy
 used in the command, as indicated by its name, does not enforce any matching rule.
-
-#### Copy the extension field
-For security reasons, the default setting in `openssl.cnf` does not allow the `openssl ca` command to copy the extension field from the request to the final certificate. To enable
-that, we can go to our copy of the configuration file (`myCA_openssl.cnf`) and uncomment the following line:
-
-```
-# Extension copying option: use with caution.
-copy_extensions = copy
-```
 
 After signing the certificate, please use the following command to print out the decoded content of the
 certificate, and check whether the alternative names are included.
